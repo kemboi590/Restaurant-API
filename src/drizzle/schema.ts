@@ -10,7 +10,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm"; // Import the sql template tag used to write raw SQL queries
 
-// Restorant
+// restaurant
 
 // 1. State
 export const stateTable = pgTable("state", {
@@ -49,8 +49,8 @@ export const addressTable = pgTable("address", {
     .notNull(),
 });
 
-// 4. Restorant
-export const restorantTable = pgTable("restorant", {
+// 4. restaurant
+export const restaurantTable = pgTable("restaurant", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
   street_address: varchar("street_address", { length: 255 }).notNull(),
@@ -70,9 +70,9 @@ export const restorantTable = pgTable("restorant", {
 export const menuItemTable = pgTable("menu_item", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
-  restorant_id: integer("restorant_id")
+  restaurant_id: integer("restaurant_id")
     .notNull()
-    .references(() => restorantTable.id, { onDelete: "cascade" }),
+    .references(() => restaurantTable.id, { onDelete: "cascade" }),
   category_id: integer("category_id")
     .notNull()
     .references(() => categoryTable.id, { onDelete: "cascade" }),
@@ -112,12 +112,12 @@ export const usersTable = pgTable("users", {
     .notNull(),
 });
 
-// 8. Restorant Owner
-export const restorantOwnerTable = pgTable("restorant_owner", {
+// 8. restaurant Owner
+export const restaurantOwnerTable = pgTable("restaurant_owner", {
   id: serial("id").primaryKey(),
-  restorant_id: integer("restorant_id")
+  restaurant_id: integer("restaurant_id")
     .notNull()
-    .references(() => restorantTable.id, { onDelete: "cascade" }),
+    .references(() => restaurantTable.id, { onDelete: "cascade" }),
   owner_id: integer("owner_id")
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
@@ -126,9 +126,9 @@ export const restorantOwnerTable = pgTable("restorant_owner", {
 //9.  orders
 export const ordersTable = pgTable("orders", {
   id: serial("id").primaryKey(),
-  restorant_id: integer("restorant_id")
+  restaurant_id: integer("restaurant_id")
     .notNull()
-    .references(() => restorantTable.id, { onDelete: "cascade" }),
+    .references(() => restaurantTable.id, { onDelete: "cascade" }),
   estimated_delivery_time: timestamp("estimated_delivery_time").notNull(),
   actual_delivery_time: timestamp("actual_delivery_time"),
   delivery_address: varchar("delivery_address", { length: 255 }).notNull(),
