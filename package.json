@@ -9,6 +9,7 @@
     "start": "npm run build && node ./dist/index.js",
     "generate": "drizzle-kit generate",
     "migrate": "tsx src/drizzle/migrate.ts",
+    "studio": "drizzle-kit studio",
     "push": "drizzle-kit push"
   },
   "keywords": [],
