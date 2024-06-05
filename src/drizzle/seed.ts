@@ -1,7 +1,19 @@
 import db from "./db.ts";
-import {  
-  stateTable,  cityTable,  addressTable,  restaurantTable,  menuItemTable,  categoryTable,  usersTable,  restaurantOwnerTable,
-  ordersTable,  driverTable,  orderMenuItemTable,  orderStatusTable,  statusCatalogTable,  commentsTable
+import {
+  stateTable,
+  cityTable,
+  addressTable,
+  restaurantTable,
+  menuItemTable,
+  categoryTable,
+  usersTable,
+  restaurantOwnerTable,
+  ordersTable,
+  driverTable,
+  orderMenuItemTable,
+  orderStatusTable,
+  statusCatalogTable,
+  commentsTable,
 } from "./schema.ts";
 
 const states = [{ name: "Kenya", code: "254" }];
