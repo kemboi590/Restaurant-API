@@ -1,13 +1,4 @@
-import {
-  integer,
-  pgTable,
-  serial,
-  varchar,
-  text,
-  timestamp,
-  boolean,
-  decimal,
-} from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, varchar, text, timestamp, boolean, decimal, } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm"; // Import the sql template tag used to write raw SQL queries
 import { relations } from "drizzle-orm";
 
@@ -26,21 +17,6 @@ export const cityTable = pgTable("city", {
     .notNull()
     .references(() => stateTable.id, { onDelete: "cascade" }),
 });
-
-// 1. State and City relationship
-export const stateRelations = relations(stateTable, ({ one, many }) => ({
-  //denotes the relationship between state and city
-  cities: many(cityTable), // one state can have many cities
-}));
-
-export const cityRelations = relations(cityTable, ({ one }) => ({
-  // denotes the relationship between city and state
-  state: one(stateTable, {
-    // one city belongs to one state
-    fields: [cityTable.state_id],
-    references: [stateTable.id],
-  }),
-}));
 
 // 3. Address
 export const addressTable = pgTable("address", {
@@ -78,11 +54,6 @@ export const addressRelations = relations(addressTable, ({ one }) => ({
   }),
 }));
 
-export const cityAddressRelations = relations(cityTable, ({ many }) => ({
-  //denotes the relationship between city and address
-  addresses: many(addressTable), // one city can have many addresses
-}));
-
 // 4. restaurant
 export const restaurantTable = pgTable("restaurant", {
   id: serial("id").primaryKey(),
@@ -99,21 +70,6 @@ export const restaurantTable = pgTable("restaurant", {
     .default(sql`NOW()`)
     .notNull(),
 });
-
-// 3. City and Restaurant relationship
-export const cityRestaurantRelations = relations(cityTable, ({ many }) => ({
-  //denotes the relationship between city and restaurant
-  restaurants: many(restaurantTable), // one city can have many restaurants
-}));
-
-export const restaurantRelations = relations(restaurantTable, ({ one }) => ({
-  //denotes the relationship between restaurant and city
-  city: one(cityTable, {
-    // one restaurant belongs to one city
-    fields: [restaurantTable.city_id],
-    references: [cityTable.id],
-  }),
-}));
 
 //5.  menu_item
 export const menuItemTable = pgTable("menu_item", {
@@ -137,43 +93,11 @@ export const menuItemTable = pgTable("menu_item", {
     .notNull(),
 });
 
-// 5. Restaurant and Menu Item relationship
-export const menuItemRelations = relations(menuItemTable, ({ one }) => ({
-  //denotes the relationship between restaurant and menu item
-  restaurant: one(restaurantTable, {
-    // one menu item belongs to one restaurant
-    fields: [menuItemTable.restaurant_id],
-    references: [restaurantTable.id],
-  }),
-  category: one(categoryTable, {
-    // one menu item belongs to one category
-    fields: [menuItemTable.category_id],
-    references: [categoryTable.id],
-  }),
-}));
-
-export const restaurantMenuItemsRelations = relations(
-  restaurantTable,
-  ({ many }) => ({
-    //denotes the relationship between restaurant and menu item
-    menuItems: many(menuItemTable), // one restaurant can have many menu items
-  })
-);
-
 // 6. Category
 export const categoryTable = pgTable("category", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
 });
-
-// 6. Menu Item and Category relationship
-export const categoryMenuItemsRelations = relations(
-  categoryTable,
-  ({ many }) => ({
-    //denotes the relationship between category and menu item
-    menuItems: many(menuItemTable), // one category can have many menu items
-  })
-);
 
 // 7. users
 export const usersTable = pgTable("users", {
@@ -193,12 +117,6 @@ export const usersTable = pgTable("users", {
     .notNull(),
 });
 
-// 4. Address and User relationship
-export const userAddressRelations = relations(usersTable, ({ many }) => ({
-  //denotes the relationship between user and address
-  addresses: many(addressTable), // one user can have many addresses
-}));
-
 // 8. restaurant Owner
 export const restaurantOwnerTable = pgTable("restaurant_owner", {
   id: serial("id").primaryKey(),
@@ -209,24 +127,6 @@ export const restaurantOwnerTable = pgTable("restaurant_owner", {
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
 });
-
-// 7. Restaurant and Owner relationship
-export const restaurantOwnerRelations = relations(
-  restaurantOwnerTable,
-  ({ one }) => ({
-    //denotes the relationship between restaurant and owner
-    restaurant: one(restaurantTable, {
-      // one owner belongs to one restaurant
-      fields: [restaurantOwnerTable.restaurant_id],
-      references: [restaurantTable.id],
-    }),
-    owner: one(usersTable, {
-      // one owner belongs to one user
-      fields: [restaurantOwnerTable.owner_id],
-      references: [usersTable.id],
-    }),
-  })
-);
 
 //9.  orders
 export const ordersTable = pgTable("orders", {
@@ -254,6 +154,177 @@ export const ordersTable = pgTable("orders", {
     .default(sql`NOW()`)
     .notNull(),
 });
+
+// 10. Driver
+export const driverTable = pgTable("driver", {
+  id: serial("id").primaryKey(),
+  car_make: varchar("car_make", { length: 255 }).notNull(),
+  car_model: varchar("car_model", { length: 255 }).notNull(),
+  car_year: varchar("car_year", { length: 255 }).notNull(),
+  user_id: integer("user_id")
+    .notNull()
+    .references(() => usersTable.id, { onDelete: "cascade" }),
+  online: boolean("online").notNull(),
+  delivering: boolean("delivering").notNull(),
+  created_at: timestamp("created_at")
+    .default(sql`NOW()`)
+    .notNull(),
+  updated_at: timestamp("updated_at")
+    .default(sql`NOW()`)
+    .notNull(),
+});
+
+// 11. Order Menu Item
+export const orderMenuItemTable = pgTable("order_menu_item", {
+  id: serial("id").primaryKey(),
+  order_id: integer("order_id")
+    .notNull()
+    .references(() => ordersTable.id, { onDelete: "cascade" }),
+  menu_item_id: integer("menu_item_id")
+    .notNull()
+    .references(() => menuItemTable.id, { onDelete: "cascade" }),
+  quantity: integer("quantity").notNull(),
+  item_price: decimal("item_price").notNull(),
+  price: decimal("price").notNull(),
+  comment: text("comment"),
+});
+
+// 12. Order Status
+export const orderStatusTable = pgTable("order_status", {
+  id: serial("id").primaryKey(),
+  order_id: integer("order_id")
+    .notNull()
+    .references(() => ordersTable.id, { onDelete: "cascade" }),
+  status_catalog_id: integer("status_catalog_id")
+    .notNull()
+    .references(() => statusCatalogTable.id, { onDelete: "cascade" }),
+  created_at: timestamp("created_at")
+    .default(sql`NOW()`)
+    .notNull(),
+});
+
+// 13. Status Catalog
+export const statusCatalogTable = pgTable("status_catalog", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description").notNull(),
+});
+
+// 14. Comments
+export const commentsTable = pgTable("comments", {
+  id: serial("id").primaryKey(),
+  order_id: integer("order_id")
+    .notNull()
+    .references(() => ordersTable.id, { onDelete: "cascade" }),
+  user_id: integer("user_id")
+    .notNull()
+    .references(() => usersTable.id, { onDelete: "cascade" }),
+  comment_text: text("comment_text").notNull(),
+  is_complaint: boolean("is_complaint").notNull(),
+  is_praise: boolean("is_praise").notNull(),
+  created_at: timestamp("created_at")
+    .default(sql`NOW()`)
+    .notNull(),
+  updated_at: timestamp("updated_at")
+    .default(sql`NOW()`)
+    .notNull(),
+});
+
+// =================================================================================================//
+//=====================================RELATIONSHIPS============================================//
+
+// 1. State and City relationship
+export const stateRelations = relations(stateTable, ({ one, many }) => ({
+  //denotes the relationship between state and city
+  cities: many(cityTable), // one state can have many cities
+}));
+
+export const cityRelations = relations(cityTable, ({ one }) => ({
+  // denotes the relationship between city and state
+  state: one(stateTable, {
+    // one city belongs to one state
+    fields: [cityTable.state_id],
+    references: [stateTable.id],
+  }),
+}));
+
+//2. City and Address relationship
+export const cityAddressRelations = relations(cityTable, ({ many }) => ({
+  //denotes the relationship between city and address
+  addresses: many(addressTable), // one city can have many addresses
+}));
+
+// 3. City and Restaurant relationship
+export const cityRestaurantRelations = relations(cityTable, ({ many }) => ({
+  //denotes the relationship between city and restaurant
+  restaurants: many(restaurantTable), // one city can have many restaurants
+}));
+
+export const restaurantRelations = relations(restaurantTable, ({ one }) => ({
+  //denotes the relationship between restaurant and city
+  city: one(cityTable, {
+    // one restaurant belongs to one city
+    fields: [restaurantTable.city_id],
+    references: [cityTable.id],
+  }),
+}));
+
+// 5. Restaurant and Menu Item relationship
+export const menuItemRelations = relations(menuItemTable, ({ one }) => ({
+  //denotes the relationship between restaurant and menu item
+  restaurant: one(restaurantTable, {
+    // one menu item belongs to one restaurant
+    fields: [menuItemTable.restaurant_id],
+    references: [restaurantTable.id],
+  }),
+  category: one(categoryTable, {
+    // one menu item belongs to one category
+    fields: [menuItemTable.category_id],
+    references: [categoryTable.id],
+  }),
+}));
+
+// 6. Category and Menu Item relationship
+export const restaurantMenuItemsRelations = relations(
+  restaurantTable,
+  ({ many }) => ({
+    //denotes the relationship between restaurant and menu item
+    menuItems: many(menuItemTable), // one restaurant can have many menu items
+  })
+);
+
+// 7. Menu Item and Category relationship
+export const categoryMenuItemsRelations = relations(
+  categoryTable,
+  ({ many }) => ({
+    //denotes the relationship between category and menu item
+    menuItems: many(menuItemTable), // one category can have many menu items
+  })
+);
+
+// 4. Address and User relationship
+export const userAddressRelations = relations(usersTable, ({ many }) => ({
+  //denotes the relationship between user and address
+  addresses: many(addressTable), // one user can have many addresses
+}));
+
+// 7. Restaurant and Owner relationship
+export const restaurantOwnerRelations = relations(
+  restaurantOwnerTable,
+  ({ one }) => ({
+    //denotes the relationship between restaurant and owner
+    restaurant: one(restaurantTable, {
+      // one owner belongs to one restaurant
+      fields: [restaurantOwnerTable.restaurant_id],
+      references: [restaurantTable.id],
+    }),
+    owner: one(usersTable, {
+      // one owner belongs to one user
+      fields: [restaurantOwnerTable.owner_id],
+      references: [usersTable.id],
+    }),
+  })
+);
 
 // 8. Order and User relationship
 export const userOrderRelations = relations(usersTable, ({ many }) => ({
@@ -288,25 +359,6 @@ export const restaurantOrderRelations = relations(
   })
 );
 
-// 10. Driver
-export const driverTable = pgTable("driver", {
-  id: serial("id").primaryKey(),
-  car_make: varchar("car_make", { length: 255 }).notNull(),
-  car_model: varchar("car_model", { length: 255 }).notNull(),
-  car_year: varchar("car_year", { length: 255 }).notNull(),
-  user_id: integer("user_id")
-    .notNull()
-    .references(() => usersTable.id, { onDelete: "cascade" }),
-  online: boolean("online").notNull(),
-  delivering: boolean("delivering").notNull(),
-  created_at: timestamp("created_at")
-    .default(sql`NOW()`)
-    .notNull(),
-  updated_at: timestamp("updated_at")
-    .default(sql`NOW()`)
-    .notNull(),
-});
-
 // 10. Order and Driver relationship
 export const driverOrderRelations = relations(driverTable, ({ many }) => ({
   //denotes the relationship between driver and order
@@ -321,21 +373,6 @@ export const orderDriverRelations = relations(ordersTable, ({ one }) => ({
     references: [driverTable.id],
   }),
 }));
-
-// 11. Order Menu Item
-export const orderMenuItemTable = pgTable("order_menu_item", {
-  id: serial("id").primaryKey(),
-  order_id: integer("order_id")
-    .notNull()
-    .references(() => ordersTable.id, { onDelete: "cascade" }),
-  menu_item_id: integer("menu_item_id")
-    .notNull()
-    .references(() => menuItemTable.id, { onDelete: "cascade" }),
-  quantity: integer("quantity").notNull(),
-  item_price: decimal("item_price").notNull(),
-  price: decimal("price").notNull(),
-  comment: text("comment"),
-});
 
 // 11. Order and Menu Item relationship
 export const orderMenuItemRelations = relations(
@@ -355,20 +392,6 @@ export const orderMenuItemRelations = relations(
   })
 );
 
-// 12. Order Status
-export const orderStatusTable = pgTable("order_status", {
-  id: serial("id").primaryKey(),
-  order_id: integer("order_id")
-    .notNull()
-    .references(() => ordersTable.id, { onDelete: "cascade" }),
-  status_catalog_id: integer("status_catalog_id")
-    .notNull()
-    .references(() => statusCatalogTable.id, { onDelete: "cascade" }),
-  created_at: timestamp("created_at")
-    .default(sql`NOW()`)
-    .notNull(),
-});
-
 // 12. Order and Status relationship
 export const orderStatusRelations = relations(orderStatusTable, ({ one }) => ({
   //denotes the relationship between order and status
@@ -384,13 +407,6 @@ export const orderStatusRelations = relations(orderStatusTable, ({ one }) => ({
   }),
 }));
 
-// 13. Status Catalog
-export const statusCatalogTable = pgTable("status_catalog", {
-  id: serial("id").primaryKey(),
-  name: varchar("name", { length: 255 }).notNull(),
-  description: text("description").notNull(),
-});
-
 // 13. Status and Catalog relationship
 export const statusCatalogRelations = relations(
   statusCatalogTable,
@@ -399,26 +415,6 @@ export const statusCatalogRelations = relations(
     statuses: many(orderStatusTable), // one status can have many orders
   })
 );
-
-// 14. Comments
-export const commentsTable = pgTable("comments", {
-  id: serial("id").primaryKey(),
-  order_id: integer("order_id")
-    .notNull()
-    .references(() => ordersTable.id, { onDelete: "cascade" }),
-  user_id: integer("user_id")
-    .notNull()
-    .references(() => usersTable.id, { onDelete: "cascade" }),
-  comment_text: text("comment_text").notNull(),
-  is_complaint: boolean("is_complaint").notNull(),
-  is_praise: boolean("is_praise").notNull(),
-  created_at: timestamp("created_at")
-    .default(sql`NOW()`)
-    .notNull(),
-  updated_at: timestamp("updated_at")
-    .default(sql`NOW()`)
-    .notNull(),
-});
 
 // 14. Order and Comments relationship
 export const orderCommentRelations = relations(commentsTable, ({ one }) => ({
@@ -445,6 +441,7 @@ export const userCommentRelations = relations(usersTable, ({ many }) => ({
   //denotes the relationship between user and comments
   comments: many(commentsTable), // one user can have many comments
 }));
+
 
 // =================================================================================================//
 
