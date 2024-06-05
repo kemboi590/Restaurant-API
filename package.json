@@ -10,7 +10,8 @@
     "generate": "drizzle-kit generate",
     "migrate": "tsx src/drizzle/migrate.ts",
     "studio": "drizzle-kit studio",
-    "push": "drizzle-kit push"
+    "push": "drizzle-kit push",
+    "seed": "tsx src/drizzle/seed.ts"
   },
   "keywords": [],
   "author": "",
