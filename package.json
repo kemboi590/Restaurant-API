@@ -1,31 +1,25 @@
 {
-  "name": "restorant-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "tsx watch ./src/index.ts",
+    "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "start": "npm run build && node ./dist/index.js",
+    "start": "node dist/index.js",
     "generate": "drizzle-kit generate",
     "migrate": "tsx src/drizzle/migrate.ts",
     "studio": "drizzle-kit studio",
     "push": "drizzle-kit push",
     "seed": "tsx src/drizzle/seed.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "@hono/node-server": "^1.11.2",
     "dotenv": "^16.4.5",
+    "hono": "^4.4.2",
     "drizzle-orm": "^0.31.0",
     "pg": "^8.11.5"
   },
   "devDependencies": {
-    "@types/node": "^20.14.0",
+    "@types/node": "^20.11.17",
     "@types/pg": "^8.11.6",
-    "drizzle-kit": "^0.22.1",
-    "tsx": "^4.11.2",
-    "typescript": "^5.4.5"
+    "drizzle-kit": "^0.22.2",
+    "tsx": "^4.7.1"
   }
 }
