@@ -350,14 +350,14 @@ const orderMenuItems = [
 ];
 
 const orderStatus = [
-  { order_id: 1, status_catalog_id: 1, timestamp: new Date() },
-  { order_id: 1, status_catalog_id: 2, timestamp: new Date() },
-  { order_id: 2, status_catalog_id: 1, timestamp: new Date() },
-  { order_id: 2, status_catalog_id: 2, timestamp: new Date() },
-  { order_id: 3, status_catalog_id: 1, timestamp: new Date() },
-  { order_id: 3, status_catalog_id: 2, timestamp: new Date() },
-  { order_id: 4, status_catalog_id: 1, timestamp: new Date() },
-  { order_id: 4, status_catalog_id: 2, timestamp: new Date() },
+  { order_id: 1, status_catalog_id: 1, created_at: new Date() },
+  { order_id: 1, status_catalog_id: 2, created_at: new Date() },
+  { order_id: 2, status_catalog_id: 1, created_at: new Date() },
+  { order_id: 2, status_catalog_id: 2, created_at: new Date() },
+  { order_id: 3, status_catalog_id: 1, created_at: new Date() },
+  { order_id: 3, status_catalog_id: 2, created_at: new Date() },
+  { order_id: 4, status_catalog_id: 1, created_at: new Date() },
+  { order_id: 4, status_catalog_id: 2, created_at: new Date() },
 ];
 
 const statusCatalog = [
@@ -371,9 +371,7 @@ const comments = [
   {
     order_id: 1,
     user_id: 1,
-    restaurant_id: 1,
-    rating: 4,
-    comment_text: "Good food",
+    comment_text: "I enjoyed the food",
     is_complaint: false,
     is_praise: true,
     created_at: new Date(),
@@ -382,9 +380,7 @@ const comments = [
   {
     order_id: 2,
     user_id: 2,
-    restaurant_id: 2,
-    rating: 3,
-    comment_text: "Good food",
+    comment_text: "I enjoyed the food",
     is_complaint: false,
     is_praise: true,
     created_at: new Date(),
@@ -393,9 +389,7 @@ const comments = [
   {
     order_id: 3,
     user_id: 3,
-    restaurant_id: 3,
-    rating: 2,
-    comment_text: "Good food",
+    comment_text: "I enjoyed the food",
     is_complaint: false,
     is_praise: true,
     created_at: new Date(),
@@ -404,14 +398,14 @@ const comments = [
   {
     order_id: 4,
     user_id: 4,
-    restaurant_id: 4,
-    rating: 1,
-    comment_text: "Good food",
+    comment_text: "I enjoyed the food",
     is_complaint: false,
     is_praise: true,
     created_at: new Date(),
     updated_at: new Date(),
   },
+
+
 ];
 
 async function seed() {
@@ -425,16 +419,18 @@ async function seed() {
   // await db.insert(restaurantOwnerTable).values(restaurantOwners);
   // await db.insert(driverTable).values(drivers);  // Insert drivers before orders
   // await db.insert(ordersTable).values(orders);  // Insert orders before order_menu_item
-
-
-  
   // await db.insert(orderMenuItemTable).values(orderMenuItems);  // Insert order_menu_item after orders
-  // await db.insert(orderStatusTable).values(orderStatus);
   // await db.insert(statusCatalogTable).values(statusCatalog);
+  // await db.insert(orderStatusTable).values(orderStatus);
   // await db.insert(commentsTable).values(comments);
 }
 
-seed();
+seed().then(() => {
+  console.log("Seeding completed");
+
+}).catch((error) => {
+  console.error("Error seeding data", error);
+});
 
 
 

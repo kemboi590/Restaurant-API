@@ -28,7 +28,7 @@ export const cityTable = pgTable("city", {
 });
 
 // 1. State and City relationship
-export const stateRelations = relations(stateTable, ({ one, many }) => ({
+export const stateRelations = relations(stateTable, ({ many }) => ({
   //denotes the relationship between state and city
   cities: many(cityTable), // one state can have many cities
 }));
@@ -80,7 +80,8 @@ export const addressRelations = relations(addressTable, ({ one }) => ({
 
 export const cityAddressRelations = relations(cityTable, ({ many }) => ({
   //denotes the relationship between city and address
-  addresses: many(addressTable), // one city can have many addresses
+  addresses: many(addressTable), 
+  
 }));
 
 // 4. restaurant
