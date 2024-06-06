@@ -8,6 +8,12 @@ import { timeout } from 'hono/timeout'
 import { HTTPException } from 'hono/http-exception'
 
 
+// all routers
+import { stateRouter } from './states/states.router'
+import { cityRouter } from './cities/cities.router'
+import { addressesRouter } from './addresses/addressesrouter'
+
+
 const app = new Hono()
 
 const customTimeoutException = () =>
@@ -23,23 +29,26 @@ app.use('/', timeout(10000, customTimeoutException))
 
 
 // default route
-app.get('/ok', (c) => {
+app.get('/', (c) => {
   return c.text('The server is running📢!')
 })
 
-app.get('/', (c) => {
-  return c.text('Hello Kemboi!')
-})
+// state route
+app.route('/', stateRouter)
+// cities route
+app.route('/', cityRouter)
+// addresses route
+app.route('/', addressesRouter)
+
+
 
 app.get('/timeout', async (c) => {
   await new Promise((resolve) => setTimeout(resolve, 11000))
   return c.text("data after 5 seconds", 200)
 })
 
-
-
 serve({
-  fetch: app.fetch, 
+  fetch: app.fetch,
   port: Number(process.env.PORT)
 })
 

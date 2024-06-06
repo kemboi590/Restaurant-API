@@ -1,0 +1,95 @@
+### TEST ROUTE
+GET http://localhost:8080/
+
+### GET STATES
+GET http://localhost:8080/states
+
+### GET STATE BY ID
+GET http://localhost:8080/states/1
+
+### CREATE STATE
+POST http://localhost:8080/states HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Tanzania",
+    "code": "255"
+}
+
+### UPDATE STATE BY ID
+PUT http://localhost:8080/states/6  HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Kenaya",
+    "code": "256"
+}
+
+### DELETE STATE BY ID
+DELETE http://localhost:8080/states/6
+
+### GET CITY 
+GET http://localhost:8080/cities
+
+### GET CITY BY ID
+GET http://localhost:8080/cities/1
+
+### CREATE CITY
+
+POST http://localhost:8080/cities HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Bungoma",
+    "state_id": 1 
+}
+
+### UPDATE CITY BY ID
+PUT http://localhost:8080/cities/7 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Bungoma",
+    "state_id": 1 
+}
+
+### DELETE CITY BY ID
+DELETE http://localhost:8080/cities/7
+
+
+
+### GET ALL ADDRESSES
+GET http://localhost:8080/addresses
+
+### GET ADDRESS BY ID
+GET http://localhost:8080/addresses/8
+
+### CREATE ADDRESS
+POST http://localhost:8080/addresses HTTP/1.1
+Content-Type: application/json
+
+{
+    "street_address_1": "1234 nandi",
+    "street_address_2": "Kagio road",
+    "city_id": 1,
+    "zip_code": "12890",
+    "delivery_instructions": "Deliver to the gate",
+    "user_id": 1
+}
+
+
+### UPDATE ADDRESS BY ID
+PUT http://localhost:8080/addresses/7 HTTP/1.1
+Content-Type: application/json
+
+{
+    "street_address_1": "1234 Keru",
+    "street_address_2": "keru road",
+    "city_id": 1,
+    "zip_code": "12890",
+    "delivery_instructions": "Deliver to the field",
+    "user_id": 3
+}
+
+### DELETE ADDRESS BY ID
+DELETE http://localhost:8080/addresses/8
