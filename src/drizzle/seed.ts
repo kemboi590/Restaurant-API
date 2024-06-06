@@ -1,20 +1,6 @@
 import db from "./db.ts";
-import {
-  stateTable,
-  cityTable,
-  addressTable,
-  restaurantTable,
-  menuItemTable,
-  categoryTable,
-  usersTable,
-  restaurantOwnerTable,
-  ordersTable,
-  driverTable,
-  orderMenuItemTable,
-  orderStatusTable,
-  statusCatalogTable,
-  commentsTable,
-} from "./schema.ts";
+import {  stateTable,  cityTable,  addressTable,  restaurantTable,  menuItemTable,  categoryTable,  usersTable,  restaurantOwnerTable,  ordersTable,  driverTable,  orderMenuItemTable,
+  orderStatusTable,  statusCatalogTable,  commentsTable,} from "./schema.ts";
 
 const states = [{ name: "Kenya", code: "254" }];
 
@@ -312,8 +298,7 @@ const drivers = [
     updated_at: new Date(),
   },
 ];
-// To solve the problem, you need to ensure that the price property
-// in the orderMenuItems array is of type string instead of number.
+
 const orderMenuItems = [
   {
     order_id: 1,
@@ -409,20 +394,20 @@ const comments = [
 ];
 
 async function seed() {
-  // await db.insert(stateTable).values(states);
-  // await db.insert(cityTable).values(cities);
-  // await db.insert(usersTable).values(users);  // Insert users before addresses
-  // await db.insert(addressTable).values(addresses);  // Insert addresses after users
-  // await db.insert(restaurantTable).values(restaurants);
-  // await db.insert(categoryTable).values(categories);
-  // await db.insert(menuItemTable).values(menuItems);
-  // await db.insert(restaurantOwnerTable).values(restaurantOwners);
-  // await db.insert(driverTable).values(drivers);  // Insert drivers before orders
-  // await db.insert(ordersTable).values(orders);  // Insert orders before order_menu_item
-  // await db.insert(orderMenuItemTable).values(orderMenuItems);  // Insert order_menu_item after orders
-  // await db.insert(statusCatalogTable).values(statusCatalog);
-  // await db.insert(orderStatusTable).values(orderStatus);
-  // await db.insert(commentsTable).values(comments);
+  await db.insert(stateTable).values(states);
+  await db.insert(cityTable).values(cities);
+  await db.insert(usersTable).values(users);  // Insert users before addresses
+  await db.insert(addressTable).values(addresses);  // Insert addresses after users
+  await db.insert(restaurantTable).values(restaurants);
+  await db.insert(categoryTable).values(categories);
+  await db.insert(menuItemTable).values(menuItems);
+  await db.insert(restaurantOwnerTable).values(restaurantOwners);
+  await db.insert(driverTable).values(drivers);  // Insert drivers before orders
+  await db.insert(ordersTable).values(orders);  // Insert orders before order_menu_item
+  await db.insert(orderMenuItemTable).values(orderMenuItems);  // Insert order_menu_item after orders
+  await db.insert(statusCatalogTable).values(statusCatalog);
+  await db.insert(orderStatusTable).values(orderStatus);
+  await db.insert(commentsTable).values(comments);
 }
 
 seed().then(() => {
