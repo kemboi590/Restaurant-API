@@ -1,6 +1,5 @@
 import { Context } from "hono";
 import { getStatesService, getStateByIdService, createStateService, updateStateService, deleteStateService } from "./states.service";
-import { stateSchema } from "../validators";
 
 export const getStatesController = async (c: Context) => {
     try {

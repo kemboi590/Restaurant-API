@@ -38,7 +38,7 @@ export const createCityController = async (c: Context) => {
         const newCity = await createCityService(city);
 
         if (!newCity) return c.text("City not created", 400);
-        return c.json({ message: "City created successfully", newCity }, 201);
+        return c.json({ message: newCity }, 201);
     } catch (error: any) {
         return c.json({ error: error?.message }, 500);
     }
@@ -59,7 +59,7 @@ export const updateCityController = async (c: Context) => {
         // get data to update
         const res = await updateCityService(id, city);
         if (!res) return c.text("City not updated", 400);
-        return c.json({ message: "City updated successfully", res }, 200);
+        return c.json({ message: res }, 200);
 
     } catch (error: any) {
         return c.json({ error: error?.message }, 500);
@@ -78,7 +78,7 @@ export const deleteCityController = async (c: Context) => {
         // delete city
         const res = await deleteCityService(id);
         if (!res) return c.text("City not deleted", 400);
-        return c.json({ message: "City deleted successfully", res }, 200);
+        return c.json({ message: res }, 200);
     } catch (error: any) {
         return c.json({ error: error?.message }, 500);
     }

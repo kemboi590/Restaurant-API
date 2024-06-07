@@ -39,7 +39,7 @@ export const createAddressController = async (c: Context) => {
         const newAddress = await createAddressService(address);
 
         if (!newAddress) return c.text("Address not created", 400);
-        return c.json({ message: "Address created successfully", newAddress }, 201);
+        return c.json({ message: newAddress }, 201);
     } catch (error: any) {
         return c.json({ error: error?.message }, 500);
     }
