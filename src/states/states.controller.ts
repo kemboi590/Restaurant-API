@@ -1,10 +1,10 @@
 import { Context } from "hono";
 import { getStatesService, getStateByIdService, createStateService, updateStateService, deleteStateService } from "./states.service";
+import { stateSchema } from "../validators";
 
 export const getStatesController = async (c: Context) => {
     try {
         const states = await getStatesService();
-        console.log(states)
         if (states == null || states.length == 0) {
             return c.text("No states found", 404);
         }
@@ -39,7 +39,7 @@ export const createStateController = async (c: Context) => {
         const newState = await createStateService(state);
 
         if (!newState) return c.text("State not created", 400);
-        return c.json({ message: "State created successfully", newState }, 201);
+        return c.json({ message: newState }, 201);
     } catch (error: any) {
         return c.json({ error: error?.message }, 500);
     }
@@ -54,7 +54,7 @@ export const updateStateController = async (c: Context) => {
 
         // search for user by id
         const updatedState = await getStateByIdService(id);
-        if (!updatedState === undefined) return c.text("State not found", 404);
+        if (!updatedState) return c.text("State not found", 404);
 
         // get data to update
         const res = await updateStateService(id, state);

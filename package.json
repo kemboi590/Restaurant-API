@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.11.2",
+    "@hono/zod-validator": "^0.2.2",
     "dotenv": "^16.4.5",
-    "hono": "^4.4.2",
     "drizzle-orm": "^0.31.0",
-    "pg": "^8.11.5"
+    "hono": "^4.4.2",
+    "pg": "^8.11.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",

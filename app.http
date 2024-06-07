@@ -1,11 +1,13 @@
 ### TEST ROUTE
 GET http://localhost:8080/
 
+                #-------------------------------------STATES---------------------------------------------------#
+
 ### GET STATES
 GET http://localhost:8080/states
 
 ### GET STATE BY ID
-GET http://localhost:8080/states/1
+GET http://localhost:8080/states/22
 
 ### CREATE STATE
 POST http://localhost:8080/states HTTP/1.1
@@ -13,21 +15,23 @@ Content-Type: application/json
 
 {
     "name": "Tanzania",
-    "code": "255"
+    "code": "200",
 }
 
 ### UPDATE STATE BY ID
-PUT http://localhost:8080/states/6  HTTP/1.1
+PUT http://localhost:8080/states/1  HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Kenaya",
+    "name": "Kenya",
     "code": "256"
 }
 
 ### DELETE STATE BY ID
-DELETE http://localhost:8080/states/6
+DELETE http://localhost:8080/states/22
 
+
+            #-------------------------------------CITY---------------------------------------------------#
 ### GET CITY 
 GET http://localhost:8080/cities
 
@@ -57,7 +61,7 @@ Content-Type: application/json
 DELETE http://localhost:8080/cities/7
 
 
-
+                #-------------------------------------ADDRESSES---------------------------------------------------#
 ### GET ALL ADDRESSES
 GET http://localhost:8080/addresses
 
@@ -93,3 +97,5 @@ Content-Type: application/json
 
 ### DELETE ADDRESS BY ID
 DELETE http://localhost:8080/addresses/8
+
+                         #-------------------------------------   ---------------------------------------------------#

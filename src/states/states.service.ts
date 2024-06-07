@@ -3,7 +3,8 @@ import db from "../drizzle/db";
 
 import { TIState, TSState, stateTable } from "../drizzle/schema";
 
-export const  getStatesService = async ():Promise<TSState[] | null> => {
+// GET STATES
+export const getStatesService = async (): Promise<TSState[] | null> => {
   const states = await db.query.stateTable.findMany();
   return states;
 };
