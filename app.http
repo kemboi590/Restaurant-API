@@ -1,25 +1,25 @@
 ### TEST ROUTE
-GET http://localhost:8080/
+GET http://localhost:8080/api/v1
 
                 #-------------------------------------STATES---------------------------------------------------#
 
 ### GET STATES
-GET http://localhost:8080/states
+GET http://localhost:8080/api/v1/states
 
 ### GET STATE BY ID
-GET http://localhost:8080/states/22
+GET http://localhost:8080/api/v1/states/24
 
 ### CREATE STATE
-POST http://localhost:8080/states HTTP/1.1
+POST http://localhost:8080/api/v1/states HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Tanzania",
-    "code": "200",
+    "name": "UG",
+    "code": "200"
 }
 
 ### UPDATE STATE BY ID
-PUT http://localhost:8080/states/23  HTTP/1.1
+PUT http://localhost:8080/api/v1/states/24  HTTP/1.1
 Content-Type: application/json
 
 {
@@ -28,53 +28,53 @@ Content-Type: application/json
 }
 
 ### DELETE STATE BY ID
-DELETE http://localhost:8080/states/23
+DELETE http://localhost:8080/api/v1/states/24
 
 
             #-------------------------------------CITY---------------------------------------------------#
 ### GET CITY 
-GET http://localhost:8080/cities
+GET http://localhost:8080/api/v1/cities
 
 ### GET CITY BY ID
-GET http://localhost:8080/cities/10
+GET http://localhost:8080/api/v1/cities/11
 
 ### CREATE CITY
 
-POST http://localhost:8080/cities HTTP/1.1
+POST http://localhost:8080/api/v1/cities HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Bomet",
+    "name": "Sotik",
     "state_id": 1 
 }
 
 ### UPDATE CITY BY ID
-PUT http://localhost:8080/cities/10 HTTP/1.1
+PUT http://localhost:8080/api/v1/cities/11 HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "sotik",
+    "name": "kapsabet",	
     "state_id": 1 
 }
 
 ### DELETE CITY BY ID
-DELETE http://localhost:8080/cities/9
+DELETE http://localhost:8080/api/v1/cities/11
 
 
                 #-------------------------------------ADDRESSES---------------------------------------------------#
 ### GET ALL ADDRESSES
-GET http://localhost:8080/addresses
+GET http://localhost:8080/api/v1/addresses
 
 ### GET ADDRESS BY ID
-GET http://localhost:8080/addresses/8
+GET http://localhost:8080/api/v1/addresses/10
 
 ### CREATE ADDRESS
-POST http://localhost:8080/addresses HTTP/1.1
+POST http://localhost:8080/api/v1/addresses HTTP/1.1
 Content-Type: application/json
 
 {
-    "street_address_1": "1234 nandi",
-    "street_address_2": "Kagio road",
+    "street_address_1": "1234 kipchabo",
+    "street_address_2": "kombe road",
     "city_id": 1,
     "zip_code": "12890",
     "delivery_instructions": "Deliver to the gate",
@@ -83,7 +83,7 @@ Content-Type: application/json
 
 
 ### UPDATE ADDRESS BY ID
-PUT http://localhost:8080/addresses/7 HTTP/1.1
+PUT http://localhost:8080/api/v1/addresses/10 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -96,6 +96,6 @@ Content-Type: application/json
 }
 
 ### DELETE ADDRESS BY ID
-DELETE http://localhost:8080/addresses/9
+DELETE http://localhost:8080/api/v1/addresses/10
 
-                         #-------------------------------------   ---------------------------------------------------#
+                #-------------------------------------   ---------------------------------------------------#

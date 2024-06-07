@@ -14,7 +14,7 @@ import { cityRouter } from './cities/cities.router'
 import { addressesRouter } from './addresses/addressesrouter'
 
 
-const app = new Hono()
+const app = new Hono().basePath('/api/v1')
 
 const customTimeoutException = () =>
   new HTTPException(408, {
