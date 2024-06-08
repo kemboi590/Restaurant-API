@@ -35,3 +35,7 @@ export const userSchema = z.object({
     confirmation_code: z.string(),
     password: z.string()
 });
+
+export const categoriesSchema = z.object({
+    name: z.string(),
+});
