@@ -63,3 +63,16 @@ export const driverSchema = z.object({
     online: z.boolean(),
     delivering: z.boolean()
 });
+
+export const orderSchema = z.object({
+    restaurant_id: z.number(),
+    estimated_delivery_time: z.string(),
+    actual_delivery_time: z.string(),
+    delivery_address: z.string(),
+    user_id: z.number(),
+    driver_id: z.number(),
+    price: z.string(),
+    discount: z.string(),
+    final_price: z.string(),
+    comment: z.string()
+});
