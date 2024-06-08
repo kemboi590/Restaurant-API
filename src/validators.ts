@@ -18,3 +18,10 @@ export const addressSchema = z.object({
     delivery_instructions: z.string(),
     user_id: z.number(),
 });
+
+export const restaurantSchema = z.object({
+    name: z.string(),
+    street_address: z.string(),
+    zip_code: z.string(),
+    city_id: z.number()
+});

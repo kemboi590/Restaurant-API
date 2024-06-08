@@ -1,7 +1,10 @@
 ### TEST ROUTE
 GET http://localhost:8080/api/v1
 
-                #-------------------------------------STATES---------------------------------------------------#
+### TEST ROUTE
+GET http://localhost:8080/api/v1/time
+
+        #-------------------------------------STATES---------------------------------------------------#
 
 ### GET STATES
 GET http://localhost:8080/api/v1/states
@@ -28,15 +31,15 @@ Content-Type: application/json
 }
 
 ### DELETE STATE BY ID
-DELETE http://localhost:8080/api/v1/states/24
+DELETE http://localhost:8080/api/v1/states/11
 
 
-            #-------------------------------------CITY---------------------------------------------------#
+    #-------------------------------------CITY---------------------------------------------------#
 ### GET CITY 
 GET http://localhost:8080/api/v1/cities
 
 ### GET CITY BY ID
-GET http://localhost:8080/api/v1/cities/11
+GET http://localhost:8080/api/v1/cities/8
 
 ### CREATE CITY
 
@@ -49,7 +52,7 @@ Content-Type: application/json
 }
 
 ### UPDATE CITY BY ID
-PUT http://localhost:8080/api/v1/cities/11 HTTP/1.1
+PUT http://localhost:8080/api/v1/cities/8 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -61,7 +64,7 @@ Content-Type: application/json
 DELETE http://localhost:8080/api/v1/cities/11
 
 
-                #-------------------------------------ADDRESSES---------------------------------------------------#
+        #-----------------------------------ADDRESSES---------------------------------------------------#
 ### GET ALL ADDRESSES
 GET http://localhost:8080/api/v1/addresses
 
@@ -98,4 +101,37 @@ Content-Type: application/json
 ### DELETE ADDRESS BY ID
 DELETE http://localhost:8080/api/v1/addresses/10
 
-                #-------------------------------------   ---------------------------------------------------#
+        #------------------------------------- Restaurants  ---------------------------------------------------#
+
+### GET ALL RESTAURANTS
+GET http://localhost:8080/api/v1/restaurants
+
+### GET RESTAURANT BY ID
+GET http://localhost:8080/api/v1/restaurants/1
+
+### CREATE RESTAURANT
+POST http://localhost:8080/api/v1/restaurants HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Mama joy",
+    "street_address": "1073 kutus",
+    "zip_code": "12345",
+    "city_id": 1
+}
+
+### UPDATE RESTAURANT BY ID
+PUT http://localhost:8080/api/v1/restaurants/5 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Mama Mwende",
+    "street_address": "1234 Main St",
+    "zip_code": "12345",
+    "city_id": 1
+}
+
+### DELETE RESTAURANT BY ID
+DELETE http://localhost:8080/api/v1/restaurants/6
+
+        #------------------------------------- MENU  ------------------------------------------------

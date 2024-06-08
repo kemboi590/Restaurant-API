@@ -2,7 +2,6 @@ import { Hono } from 'hono'
 import { getCitiesController, getCityByIdController, createCityController, updateCityController, deleteCityController } from './cities.controller'
 import { zValidator } from '@hono/zod-validator';
 import { citySchema } from '../validators';
-import { z } from 'zod';
 export const cityRouter = new Hono()
 
 // get all cities

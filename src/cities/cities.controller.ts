@@ -52,9 +52,9 @@ export const updateCityController = async (c: Context) => {
         if (isNaN(id)) return c.text("Invalid id", 400);
         const city = await c.req.json();
 
-        // search for user by id
+       
         const updatedCity = await getCityByIdService(id);
-        if (!updatedCity === undefined) return c.text("City not found", 404);
+        if (!updatedCity) return c.text("City not found", 404);
 
         // get data to update
         const res = await updateCityService(id, city);
