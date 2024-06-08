@@ -54,3 +54,12 @@ export const restaurantOwnerSchema = z.object({
     restaurant_id: z.number(),
     owner_id: z.number()
 });
+
+export const driverSchema = z.object({
+    car_make: z.string(),
+    car_model: z.string(),
+    car_year: z.string(),
+    user_id: z.number(),
+    online: z.boolean(),
+    delivering: z.boolean()
+});
