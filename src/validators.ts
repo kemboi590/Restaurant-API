@@ -76,3 +76,12 @@ export const orderSchema = z.object({
     final_price: z.string(),
     comment: z.string()
 });
+
+export const orderItemsSchema = z.object({
+    order_id: z.number(),
+    menu_item_id: z.number(),
+    quantity: z.number(),
+    item_price: z.string(),
+    price: z.string(),
+    comment: z.string()
+});
