@@ -91,9 +91,15 @@ export const statusCatalogSchema = z.object({
     description: z.string()
 });
 
-// { order_id: 1, status_catalog_id: 1, created_at: new Date() },
-
 export const orderStatusSchema = z.object({
     order_id: z.number(),
     status_catalog_id: z.number()
+});
+
+export const commentsSchema = z.object({
+    order_id: z.number(),
+    user_id: z.number(),
+    comment_text: z.string(),
+    is_complaint: z.boolean(),
+    is_praise: z.boolean()
 });
