@@ -85,3 +85,8 @@ export const orderItemsSchema = z.object({
     price: z.string(),
     comment: z.string()
 });
+
+export const statusCatalogSchema = z.object({
+    name: z.string(),
+    description: z.string()
+});
