@@ -39,3 +39,13 @@ export const userSchema = z.object({
 export const categoriesSchema = z.object({
     name: z.string(),
 });
+
+export const menuItemsSchema = z.object({
+    name: z.string(),
+    restaurant_id: z.number(),
+    category_id: z.number(),
+    description: z.string(),
+    ingredients: z.string(),
+    price: z.number(),
+    active: z.boolean()
+});

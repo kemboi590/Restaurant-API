@@ -14,6 +14,7 @@ import { addressesRouter } from './addresses/addressesrouter'
 import { restaurantRouter } from './restaurant/restaurant.router'
 import { userRouter } from './users/users.router'
 import { categoriesRouter } from './categories/categories.router'
+import { menuRouter } from './menu/menu.router'
 
 const app = new Hono().basePath('/api/v1')
 
@@ -46,6 +47,8 @@ app.route('/', restaurantRouter)
 app.route('/', userRouter)
 // categories route
 app.route('/', categoriesRouter)
+// menu route
+app.route('/', menuRouter)
 
 app.get('time', async (c) => {
   await new Promise((resolve) => setTimeout(resolve, 3000))
