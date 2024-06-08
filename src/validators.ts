@@ -90,3 +90,10 @@ export const statusCatalogSchema = z.object({
     name: z.string(),
     description: z.string()
 });
+
+// { order_id: 1, status_catalog_id: 1, created_at: new Date() },
+
+export const orderStatusSchema = z.object({
+    order_id: z.number(),
+    status_catalog_id: z.number()
+});

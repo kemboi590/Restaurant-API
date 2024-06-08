@@ -417,3 +417,32 @@ Content-Type: application/json
 DELETE http://localhost:8080/api/v1/statusCatalog/5
 
         #------------------------------------- orderStatus  ------------------------------------------------
+
+### GET ALL ORDERSTATUS
+GET http://localhost:8080/api/v1/orderStatus
+
+### GET ORDERSTATUS BY ID
+GET http://localhost:8080/api/v1/orderStatus/11
+
+### CREATE ORDERSTATUS
+POST http://localhost:8080/api/v1/orderStatus HTTP/1.1
+Content-Type: application/json
+
+{
+    "order_id": 1,
+    "status_catalog_id": 1
+}
+
+### UPDATE ORDERSTATUS BY ID
+PUT http://localhost:8080/api/v1/orderStatus/9 HTTP/1.1
+Content-Type: application/json
+
+{
+    "order_id": 1,
+    "status_catalog_id": 1
+}
+
+### DELETE ORDERSTATUS BY ID
+DELETE http://localhost:8080/api/v1/orderStatus/9
+
+        #------------------------------------- payment  ------------------------------------------------

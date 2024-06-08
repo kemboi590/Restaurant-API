@@ -20,6 +20,7 @@ import { driversRouter } from './drivers/drivers.router'
 import { ordersRouter } from './orders/orders.router'
 import { orderMenuItemsRouter } from './orderMenuItems/orderMenuItems.router'
 import { statusCatalogRouter } from './statusCatalog/statusCatalog.router'
+import { orderStatusRouter } from './orderStatus/orderStatus.router'
 
 const app = new Hono().basePath('/api/v1')
 
@@ -64,6 +65,8 @@ app.route('/', ordersRouter)
 app.route('/', orderMenuItemsRouter)
 // status catalog route
 app.route('/', statusCatalogRouter)
+// order status route
+app.route('/', orderStatusRouter)
 
 app.get('time', async (c) => {
   await new Promise((resolve) => setTimeout(resolve, 3000))
