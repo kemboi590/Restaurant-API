@@ -49,3 +49,8 @@ export const menuItemsSchema = z.object({
     price: z.number(),
     active: z.boolean()
 });
+
+export const restaurantOwnerSchema = z.object({
+    restaurant_id: z.number(),
+    owner_id: z.number()
+});

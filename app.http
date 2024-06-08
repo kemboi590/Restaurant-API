@@ -84,7 +84,6 @@ Content-Type: application/json
     "user_id": 1
 }
 
-
 ### UPDATE ADDRESS BY ID
 PUT http://localhost:8080/api/v1/addresses/10 HTTP/1.1
 Content-Type: application/json
@@ -134,7 +133,7 @@ Content-Type: application/json
 ### DELETE RESTAURANT BY ID
 DELETE http://localhost:8080/api/v1/restaurants/6
 
-        #------------------------------------- users  ------------------------------------------------
+        #------------------------------------- users ------------------------------------------------
 
 ### GET ALL USERS
 GET http://localhost:8080/api/v1/users
@@ -238,5 +237,34 @@ Content-Type: application/json
 
 ### DELETE MENU BY ID
 DELETE http://localhost:8080/api/v1/menu/5
+
+        #------------------------------------- restaurantOwners  ------------------------------------------------
+
+### GET ALL RESTAURANTOWNERS
+GET http://localhost:8080/api/v1/restaurantOwners
+
+### GET RESTAURANTOWNER BY ID
+GET http://localhost:8080/api/v1/restaurantOwners/5
+
+### CREATE RESTAURANTOWNER
+POST http://localhost:8080/api/v1/restaurantOwners HTTP/1.1
+Content-Type: application/json
+
+    {
+        "restaurant_id": 4,
+        "owner_id": 2
+    }
+
+### UPDATE RESTAURANTOWNER BY ID
+PUT http://localhost:8080/api/v1/restaurantOwners/5 HTTP/1.1
+Content-Type: application/json
+
+{
+    "restaurant_id": 3,
+    "owner_id": 1
+}
+
+### DELETE RESTAURANTOWNER BY ID
+DELETE http://localhost:8080/api/v1/restaurantOwners/5
 
         #------------------------------------- orders  ------------------------------------------------

@@ -21,7 +21,7 @@ export const getMenuItemByIdService = async (id: number): Promise<TSMenuItem | u
 // CREATE MENU ITEM
 export const createMenuItemService = async (menuItem: TIMenuItem) => {
     await db.insert(menuItemTable).values(menuItem)
-    return "menu item created successfully";
+    return "Menu item created successfully";
 }
 
 //  UPDATE MENU ITEM
