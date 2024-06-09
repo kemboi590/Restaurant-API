@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import db, { client } from "./db.ts";
+import db, { client } from "./db";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
 
 async function migration() {
