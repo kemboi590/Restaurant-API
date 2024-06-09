@@ -23,17 +23,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.client = void 0;
+exports.db = void 0;
+// db.ts
 require("dotenv/config");
-const node_postgres_1 = require("drizzle-orm/node-postgres");
-const { Client } = require("pg");
+const neon_http_1 = require("drizzle-orm/neon-http");
+const serverless_1 = require("@neondatabase/serverless");
 const schema = __importStar(require("./schema"));
-exports.client = new Client({
-    connectionString: process.env.DATABASE_URL,
-});
-const main = async () => {
-    await exports.client.connect(); //connect to the database
-};
-main();
-const db = (0, node_postgres_1.drizzle)(exports.client, { schema, logger: true });
-exports.default = db;
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+    throw new Error("DATABASE_URL is not set in environment variables.");
+}
+console.log("Creating neon client...");
+const sql = (0, serverless_1.neon)(databaseUrl);
+console.log("Initializing drizzle ORM...");
+exports.db = (0, neon_http_1.drizzle)(sql, { schema, logger: true });
