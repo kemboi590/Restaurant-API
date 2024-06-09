@@ -1,21 +1,17 @@
-// migrate.ts
-import { migrate } from "drizzle-orm/neon-http/migrator";
-import { db } from "./db";
-import { NeonHttpDatabase } from "drizzle-orm/neon-http";
+import "dotenv/config";
+
+import db, { client } from "./db";
+import { migrate } from "drizzle-orm/node-postgres/migrator";
 
 async function migration() {
-  try {
-    console.log("======Migration Started ======");
-    await migrate(db as unknown as NeonHttpDatabase<Record<string, never>>, { migrationsFolder: __dirname + "/migrations" });
-    console.log("======Migration Ended======");
-    process.exit(0);
-  } catch (error) {
-    console.error("Migration failed with error: ", error);
-    process.exit(1);
-  }
+  console.log("======Migration Started ======");
+  await migrate(db, { migrationsFolder: __dirname + "/migrations" }); // Run the migration of the database
+  await client.end(); // Close the connection to the database
+  console.log(" ======Migration Ended======");
+  process.exit(0);
 }
 
 migration().catch((e) => {
-  console.error("Unexpected error during migration:", e);
+  console.log(e);
   process.exit(1);
 });

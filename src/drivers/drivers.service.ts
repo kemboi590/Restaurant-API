@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import {db} from "../drizzle/db";
+import db from "../drizzle/db";
 import { TIDriver, TSDriver, driverTable } from "../drizzle/schema";
 
 // GET ALL DRIVERS
