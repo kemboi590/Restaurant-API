@@ -137,10 +137,11 @@ DELETE http://localhost:8080/api/v1/restaurants/6
 
 ### GET ALL USERS
 GET http://localhost:8080/api/v1/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUaWZhbnkiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTgwMzY0OTZ9.oULr1U_vfZKMi1JhnZxGdCGNY0w8NKnmtPwjmf1znA4
 
 ### GET USER BY ID
-GET http://localhost:8080/api/v1/users/5
-
+GET http://localhost:8080/api/v1/users/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTYXJhaCIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzE4MDM2NzQ4fQ.BlCErPolL5DkyAmt-N2bdJfZPfvLlYTTRo4xOBBSouU
 ### CREATE USER
 POST http://localhost:8080/api/v1/users HTTP/1.1
 Content-Type: application/json
