@@ -36,7 +36,7 @@ export const usersTable = pgTable("users", {
 });
 
 // Role Enum
-export const roleEnum = pgEnum("role", ["admin", "user"]);
+export const roleEnum = pgEnum("role", ["admin", "user", "both"]);
 
 // AuthOnUsersTable
 export const AuthOnUsersTable = pgTable("auth_on_users", {

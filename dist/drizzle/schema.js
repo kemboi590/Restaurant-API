@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userCommentRelations = exports.orderCommentsRelations = exports.orderCommentRelations = exports.statusCatalogRelations = exports.orderStatusRelations = exports.orderMenuItemRelations = exports.orderDriverRelations = exports.driverOrderRelations = exports.restaurantOrderRelations = exports.orderRestaurantRelations = exports.orderUserRelations = exports.userOrderRelations = exports.restaurantOwnerRelations = exports.restaurantRelations = exports.cityRestaurantRelations = exports.cityAddressRelations = exports.addressRelations = exports.cityRelations = exports.stateRelations = exports.userAddressRelations = exports.categoryMenuItemsRelations = exports.restaurantMenuItemsRelations = exports.menuItemRelations = exports.commentsTable = exports.orderStatusTable = exports.statusCatalogTable = exports.orderMenuItemTable = exports.ordersTable = exports.driverTable = exports.restaurantOwnerTable = exports.menuItemTable = exports.categoryTable = exports.restaurantTable = exports.addressTable = exports.usersTable = exports.cityTable = exports.stateTable = void 0;
+exports.userCommentRelations = exports.orderCommentsRelations = exports.orderCommentRelations = exports.statusCatalogRelations = exports.orderStatusRelations = exports.orderMenuItemRelations = exports.orderDriverRelations = exports.driverOrderRelations = exports.restaurantOrderRelations = exports.orderRestaurantRelations = exports.orderUserRelations = exports.userOrderRelations = exports.restaurantOwnerRelations = exports.restaurantRelations = exports.cityRestaurantRelations = exports.cityAddressRelations = exports.addressRelations = exports.cityRelations = exports.stateRelations = exports.userAddressRelations = exports.categoryMenuItemsRelations = exports.restaurantMenuItemsRelations = exports.menuItemRelations = exports.commentsTable = exports.orderStatusTable = exports.statusCatalogTable = exports.orderMenuItemTable = exports.ordersTable = exports.driverTable = exports.restaurantOwnerTable = exports.menuItemTable = exports.categoryTable = exports.restaurantTable = exports.addressTable = exports.AuthOnUsersTableRelations = exports.AuthOnUsersTable = exports.roleEnum = exports.usersTable = exports.cityTable = exports.stateTable = void 0;
 const pg_core_1 = require("drizzle-orm/pg-core");
 const drizzle_orm_1 = require("drizzle-orm"); // Import the sql template tag used to write raw SQL queries
 const drizzle_orm_2 = require("drizzle-orm");
@@ -27,7 +27,6 @@ exports.usersTable = (0, pg_core_1.pgTable)("users", {
     email: (0, pg_core_1.varchar)("email", { length: 255 }).notNull(),
     email_verified: (0, pg_core_1.boolean)("email_verified").notNull(),
     confirmation_code: (0, pg_core_1.varchar)("confirmation_code", { length: 255 }),
-    password: (0, pg_core_1.varchar)("password", { length: 255 }).notNull(),
     created_at: (0, pg_core_1.timestamp)("created_at")
         .default((0, drizzle_orm_1.sql) `NOW()`)
         .notNull(),
@@ -35,6 +34,25 @@ exports.usersTable = (0, pg_core_1.pgTable)("users", {
         .default((0, drizzle_orm_1.sql) `NOW()`)
         .notNull(),
 });
+// Role Enum
+exports.roleEnum = (0, pg_core_1.pgEnum)("role", ["admin", "user", "both"]);
+// AuthOnUsersTable
+exports.AuthOnUsersTable = (0, pg_core_1.pgTable)("auth_on_users", {
+    id: (0, pg_core_1.serial)("id").primaryKey(),
+    user_id: (0, pg_core_1.integer)("user_id")
+        .notNull()
+        .references(() => exports.usersTable.id, { onDelete: "cascade" }),
+    username: (0, pg_core_1.varchar)("username", { length: 255 }).notNull(),
+    password: (0, pg_core_1.varchar)("password", { length: 255 }).notNull(),
+    role: (0, exports.roleEnum)("role").default("user")
+});
+// User and Auth relationship
+exports.AuthOnUsersTableRelations = (0, drizzle_orm_2.relations)(exports.AuthOnUsersTable, ({ one }) => ({
+    user: one(exports.usersTable, {
+        fields: [exports.AuthOnUsersTable.user_id],
+        references: [exports.usersTable.id],
+    }),
+}));
 // 4. Address
 exports.addressTable = (0, pg_core_1.pgTable)("address", {
     id: (0, pg_core_1.serial)("id").primaryKey(),

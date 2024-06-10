@@ -23,6 +23,7 @@ const orderMenuItems_router_1 = require("./orderMenuItems/orderMenuItems.router"
 const statusCatalog_router_1 = require("./statusCatalog/statusCatalog.router");
 const orderStatus_router_1 = require("./orderStatus/orderStatus.router");
 const comments_router_1 = require("./comments/comments.router");
+const auth_router_1 = require("./auth/auth.router");
 const app = new hono_1.Hono().basePath('/api/v1');
 // custom factory method
 const customTimeException = () => new http_exception_1.HTTPException(408, {
@@ -65,6 +66,8 @@ app.route('/', statusCatalog_router_1.statusCatalogRouter);
 app.route('/', orderStatus_router_1.orderStatusRouter);
 // comments route
 app.route('/', comments_router_1.commentsRouter);
+// auth route
+app.route('/auth', auth_router_1.authRouter); // /api/v1/auth/register
 app.get('time', async (c) => {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     return c.text("Request completed");

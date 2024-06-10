@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import { getUsersController, getUserByIdController, createUserController, updateUserController, deleteUserController } from './users.controller'
 import { zValidator } from '@hono/zod-validator';
 import { userSchema } from '../validators';
-import { adminRoleAuth, userRoleAuth } from './../middleware/baerAuth';
+import { adminRoleAuth, userRoleAuth, bothRoleAuth } from './../middleware/baerAuth';
 
 export const userRouter = new Hono()
 
@@ -17,7 +17,7 @@ userRouter
 
 // get user by id
 userRouter
-    .get("users/:id", userRoleAuth, getUserByIdController)
+    .get("users/:id", bothRoleAuth, getUserByIdController)
     .put("users/:id", zValidator('json', userSchema, (result, c) => {
         if (!result.success) {
             return c.json(result.error, 400);

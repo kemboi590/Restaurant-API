@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.commentsSchema = exports.orderStatusSchema = exports.statusCatalogSchema = exports.orderItemsSchema = exports.orderSchema = exports.driverSchema = exports.restaurantOwnerSchema = exports.menuItemsSchema = exports.categoriesSchema = exports.userSchema = exports.restaurantSchema = exports.addressSchema = exports.citySchema = exports.stateSchema = void 0;
+exports.loginUserSchema = exports.registerUserSchema = exports.commentsSchema = exports.orderStatusSchema = exports.statusCatalogSchema = exports.orderItemsSchema = exports.orderSchema = exports.driverSchema = exports.restaurantOwnerSchema = exports.menuItemsSchema = exports.categoriesSchema = exports.userSchema = exports.restaurantSchema = exports.addressSchema = exports.citySchema = exports.stateSchema = void 0;
 const zod_1 = require("zod");
 exports.stateSchema = zod_1.z.object({
     name: zod_1.z.string(),
@@ -91,4 +91,14 @@ exports.commentsSchema = zod_1.z.object({
     comment_text: zod_1.z.string(),
     is_complaint: zod_1.z.boolean(),
     is_praise: zod_1.z.boolean()
+});
+exports.registerUserSchema = zod_1.z.object({
+    user_id: zod_1.z.number(),
+    username: zod_1.z.string(),
+    password: zod_1.z.string(),
+    role: zod_1.z.string().optional()
+});
+exports.loginUserSchema = zod_1.z.object({
+    username: zod_1.z.string(),
+    password: zod_1.z.string()
 });
