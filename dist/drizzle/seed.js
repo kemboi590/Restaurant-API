@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const db_1 = __importDefault(require("./db"));
+const db_1 = require("./db");
 const schema_1 = require("./schema");
 const states = [{ name: "Kenya", code: "254" }];
 const cities = [
@@ -381,20 +378,20 @@ const comments = [
     },
 ];
 async function seed() {
-    await db_1.default.insert(schema_1.stateTable).values(states);
-    await db_1.default.insert(schema_1.cityTable).values(cities);
-    await db_1.default.insert(schema_1.usersTable).values(users); // Insert users before addresses
-    await db_1.default.insert(schema_1.addressTable).values(addresses); // Insert addresses after users
-    await db_1.default.insert(schema_1.restaurantTable).values(restaurants);
-    await db_1.default.insert(schema_1.categoryTable).values(categories);
-    await db_1.default.insert(schema_1.menuItemTable).values(menuItems);
-    await db_1.default.insert(schema_1.restaurantOwnerTable).values(restaurantOwners);
-    await db_1.default.insert(schema_1.driverTable).values(drivers); // Insert drivers before orders
-    await db_1.default.insert(schema_1.ordersTable).values(orders); // Insert orders before order_menu_item
-    await db_1.default.insert(schema_1.orderMenuItemTable).values(orderMenuItems); // Insert order_menu_item after orders
-    await db_1.default.insert(schema_1.statusCatalogTable).values(statusCatalog);
-    await db_1.default.insert(schema_1.orderStatusTable).values(orderStatus);
-    await db_1.default.insert(schema_1.commentsTable).values(comments);
+    await db_1.db.insert(schema_1.stateTable).values(states);
+    await db_1.db.insert(schema_1.cityTable).values(cities);
+    await db_1.db.insert(schema_1.usersTable).values(users); // Insert users before addresses
+    await db_1.db.insert(schema_1.addressTable).values(addresses); // Insert addresses after users
+    await db_1.db.insert(schema_1.restaurantTable).values(restaurants);
+    await db_1.db.insert(schema_1.categoryTable).values(categories);
+    await db_1.db.insert(schema_1.menuItemTable).values(menuItems);
+    await db_1.db.insert(schema_1.restaurantOwnerTable).values(restaurantOwners);
+    await db_1.db.insert(schema_1.driverTable).values(drivers); // Insert drivers before orders
+    await db_1.db.insert(schema_1.ordersTable).values(orders); // Insert orders before order_menu_item
+    await db_1.db.insert(schema_1.orderMenuItemTable).values(orderMenuItems); // Insert order_menu_item after orders
+    await db_1.db.insert(schema_1.statusCatalogTable).values(statusCatalog);
+    await db_1.db.insert(schema_1.orderStatusTable).values(orderStatus);
+    await db_1.db.insert(schema_1.commentsTable).values(comments);
 }
 seed().then(() => {
     console.log("Seeding completed");

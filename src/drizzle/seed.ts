@@ -1,6 +1,8 @@
-import db from "./db";
-import {  stateTable,  cityTable,  addressTable,  restaurantTable,  menuItemTable,  categoryTable,  usersTable,  restaurantOwnerTable,  ordersTable,  driverTable,  orderMenuItemTable,
-  orderStatusTable,  statusCatalogTable,  commentsTable,} from "./schema";
+import { db } from "./db";
+import {
+  stateTable, cityTable, addressTable, restaurantTable, menuItemTable, categoryTable, usersTable, restaurantOwnerTable, ordersTable, driverTable, orderMenuItemTable,
+  orderStatusTable, statusCatalogTable, commentsTable,
+} from "./schema";
 
 const states = [{ name: "Kenya", code: "254" }];
 

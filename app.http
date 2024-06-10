@@ -10,7 +10,7 @@ GET http://localhost:8080/api/v1/time
 GET http://localhost:8080/api/v1/states
 
 ### GET STATE BY ID
-GET http://localhost:8080/api/v1/states/24
+GET http://localhost:8080/api/v1/states/2
 
 ### CREATE STATE
 POST http://localhost:8080/api/v1/states HTTP/1.1
