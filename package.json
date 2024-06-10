@@ -12,8 +12,10 @@
   "dependencies": {
     "@hono/node-server": "^1.11.2",
     "@hono/zod-validator": "^0.2.2",
+    "@neondatabase/serverless": "^0.9.3",
+    "@types/bcrypt": "^5.0.2",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.31.0",
+    "drizzle-orm": "^0.31.1",
     "hono": "^4.4.2",
     "pg": "^8.11.5",
     "zod": "^3.23.8"

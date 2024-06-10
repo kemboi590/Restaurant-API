@@ -1,4 +1,4 @@
-import { integer, pgTable, serial, varchar, text, timestamp, boolean, decimal, } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, varchar, text, timestamp, boolean, decimal, pgEnum } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm"; // Import the sql template tag used to write raw SQL queries
 import { relations } from "drizzle-orm";
 
@@ -27,7 +27,6 @@ export const usersTable = pgTable("users", {
   email: varchar("email", { length: 255 }).notNull(),
   email_verified: boolean("email_verified").notNull(),
   confirmation_code: varchar("confirmation_code", { length: 255 }),
-  password: varchar("password", { length: 255 }).notNull(),
   created_at: timestamp("created_at")
     .default(sql`NOW()`)
     .notNull(),
@@ -35,6 +34,28 @@ export const usersTable = pgTable("users", {
     .default(sql`NOW()`)
     .notNull(),
 });
+
+// Role Enum
+export const roleEnum = pgEnum("role", ["admin", "user"]);
+
+// AuthOnUsersTable
+export const AuthOnUsersTable = pgTable("auth_on_users", {
+  id: serial("id").primaryKey(),
+  user_id: integer("user_id")
+    .notNull()
+    .references(() => usersTable.id, { onDelete: "cascade" }),
+  username: varchar("username", { length: 255 }).notNull(),
+  password: varchar("password", { length: 255 }).notNull(),
+  role: roleEnum("role").default("user")
+});
+
+// User and Auth relationship
+export const AuthOnUsersTableRelations = relations(AuthOnUsersTable, ({ one }) => ({
+  user: one(usersTable, {
+    fields: [AuthOnUsersTable.user_id],
+    references: [usersTable.id],
+  }),
+}));
 
 
 // 4. Address
@@ -443,6 +464,10 @@ export type TSCategory = typeof categoryTable.$inferSelect;
 // Users table
 export type TIUsers = typeof usersTable.$inferInsert;
 export type TSUsers = typeof usersTable.$inferSelect;
+
+// AuthOnUsersTable
+export type TIAuthOnUsers = typeof AuthOnUsersTable.$inferInsert;
+export type TSAuthOnUsers = typeof AuthOnUsersTable.$inferSelect;
 
 // RestaurantOwner table
 export type TIRestaurantOwner = typeof restaurantOwnerTable.$inferInsert;

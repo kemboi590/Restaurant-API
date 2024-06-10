@@ -103,3 +103,16 @@ export const commentsSchema = z.object({
     is_complaint: z.boolean(),
     is_praise: z.boolean()
 });
+
+
+export const registerUserSchema = z.object({
+    user_id: z.number(),
+    username: z.string(),
+    password: z.string(),
+    role: z.string().optional()
+})
+
+export const loginUserSchema = z.object({
+    username: z.string(),
+    password: z.string()
+})

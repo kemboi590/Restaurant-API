@@ -22,6 +22,7 @@ import { orderMenuItemsRouter } from './orderMenuItems/orderMenuItems.router'
 import { statusCatalogRouter } from './statusCatalog/statusCatalog.router'
 import { orderStatusRouter } from './orderStatus/orderStatus.router'
 import { commentsRouter } from './comments/comments.router'
+import { authRouter } from './auth/auth.router'
 
 const app = new Hono().basePath('/api/v1')
 
@@ -70,6 +71,8 @@ app.route('/', statusCatalogRouter)
 app.route('/', orderStatusRouter)
 // comments route
 app.route('/', commentsRouter)
+// auth route
+app.route('/auth', authRouter) // /api/v1/auth/register
 
 app.get('time', async (c) => {
   await new Promise((resolve) => setTimeout(resolve, 3000))
