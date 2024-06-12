@@ -23,8 +23,9 @@ import { statusCatalogRouter } from './statusCatalog/statusCatalog.router'
 import { orderStatusRouter } from './orderStatus/orderStatus.router'
 import { commentsRouter } from './comments/comments.router'
 import { authRouter } from './auth/auth.router'
+import { readFile } from 'fs'
 
-const app = new Hono().basePath('/api/v1')
+const app = new Hono()
 
 // custom factory method
 const customTimeException = () =>
@@ -38,10 +39,6 @@ app.use(csrf())
 app.use(trimTrailingSlash())
 app.use("time", timeout(10000, customTimeException))
 
-// default test route
-app.get('/', (c) => {
-  return c.text('The server is running📢!')
-})
 
 // state route
 app.route('/', stateRouter)
@@ -77,6 +74,21 @@ app.route('/auth', authRouter) // /api/v1/auth/register
 app.get('time', async (c) => {
   await new Promise((resolve) => setTimeout(resolve, 3000))
   return c.text("Request completed")
+})
+
+
+// default test route
+import { readFileSync } from 'fs';
+
+app.get('/', async (c) => {
+  try {
+    let html = readFileSync('./index.html', 'utf-8');
+    return c.html(html);
+
+  } catch (error: any) {
+    return c.json({ error: error.message, status: 500 });
+
+  }
 })
 
 serve({

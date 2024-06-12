@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teach2Give API Documentation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f3f4f6;
+        color: #333;
+      }
+
+      header {
+        background-color: #6f42c1;
+        color: #fff;
+        padding: 1em 0;
+        text-align: center;
+        animation: headerAnimation 5s infinite alternate;
+      }
+
+      @keyframes headerAnimation {
+        0% {
+          background-color: #6f42c1;
+        }
+        50% {
+          background-color: #d63384;
+        }
+        100% {
+          background-color: #6f42c1;
+        }
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 1.5em;
+        margin-top: 1em;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: #ff6b6b;
+      }
+
+      main {
+        padding: 2em;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      main section {
+        margin-bottom: 2em;
+      }
+
+      main h2 {
+        border-bottom: 2px solid #6f42c1;
+        padding-bottom: 0.5em;
+        color: #6f42c1;
+      }
+
+      main p {
+        line-height: 1.6;
+      }
+
+      pre {
+        background-color: #e9ecef;
+        padding: 1em;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family: "Courier New", Courier, monospace;
+        color: #6f42c1;
+      }
+
+      #contact a {
+        color: #6f42c1;
+        text-decoration: none;
+      }
+
+      #contact a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        background-color: #6f42c1;
+        color: #fff;
+        text-align: center;
+        padding: 1em 0;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+      }
+
+      @keyframes footerAnimation {
+        0% {
+          color: #fff;
+        }
+        50% {
+          color: #ff6b6b;
+        }
+        100% {
+          color: #fff;
+        }
+      }
+
+      footer p {
+        margin: 0;
+        animation: footerAnimation 5s infinite alternate;
+      }
+
+      footer a {
+        color: #ff6b6b;
+        text-decoration: none;
+        margin-left: 0.5em;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Restaurants API Documentation</h1>
+      <nav>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#endpoints">Endpoints</a></li>
+          <li><a href="#examples">Examples</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          Welcome to the Restaurants API documentation. This API allows you to
+          retrieve information about restaurants and cities with restaurants and more.
+        </p>
+        <p>
+          The restaurants API is designed to provide developers with a simple and
+          efficient way to access our database of restaurant information.
+          Whether you are building a restaurant review app, a city guide, or any
+          other project, our API has you covered.
+        </p>
+        <p>
+          Please make sure to authenticate your requests using the API key
+          provided to you during registration.
+        </p>
+      </section>
+      <section id="endpoints">
+        <h2>Endpoints</h2>
+        <h3>GET /restaurants</h3>
+        <p>Retrieve a list of all restaurants.</p>
+        <pre><code>GET /api/restaurants</code></pre>
+
+        <h3>GET /restaurants/:id</h3>
+        <p>Retrieve details of a specific restaurant by ID.</p>
+        <pre><code>GET /api/restaurants/:id</code></pre>
+
+        <h3>GET /citieswithrestaurants</h3>
+        <p>Retrieve a list of cities that have restaurants.</p>
+        <pre><code>GET /api/citieswithrestaurants</code></pre>
+      </section>
+      <section id="examples">
+        <h2>Examples</h2>
+        <h3>Get all restaurants</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/restaurants</code></pre>
+
+        <h3>Get a specific restaurant by ID</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/restaurants/{id}</code></pre>
+
+        <h3>Get all cities with restaurants</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/citieswithrestaurants</code></pre>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          If you have any questions or need further assistance, please contact
+          me team at: <br>
+           <h3>You can also reach me directly via email at </h3>
+          <a href="mailto:bkemboi590@gmail.com">bkemboi590@gmail.com</a>
+          <h3>Connect with me on LinkedIn:</h3>
+          <a href="https://www.linkedin.com/in/kibichii-brian/">Brian Kemboi</a>
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>
+        &copy; 2024 Restaurants . All rights reserved.
+        <a href="/terms">Terms of Service</a> |
+        <a href="/privacy">Privacy Policy</a>
+      </p>
+    </footer>
+  </body>
+</html>
