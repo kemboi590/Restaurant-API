@@ -22,5 +22,5 @@ userRouter
         if (!result.success) {
             return c.json(result.error, 400);
         }
-    }), updateUserController)
-    .delete("users/:id", deleteUserController)
+    }), bothRoleAuth, updateUserController)
+    .delete("users/:id", bothRoleAuth, deleteUserController)

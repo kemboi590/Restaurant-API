@@ -1,7 +1,6 @@
 import "dotenv/config";
 import { verify } from "hono/jwt";
 import { Context, Next } from "hono";
-import { ne } from "drizzle-orm";
 
 interface HonoRequest<T, U> {
     user?: T;
@@ -40,7 +39,6 @@ export const authMiddleware = async (c: Context & { req: HonoRequest<any, unknow
 
     return c.json({ error: "Unauthorized" }, 401);
 }
-
 
 export const adminRoleAuth = async (c: Context, next: Next) => await authMiddleware(c, next, "admin");
 export const userRoleAuth = async (c: Context, next: Next) => await authMiddleware(c, next, "user");

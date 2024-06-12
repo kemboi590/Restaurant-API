@@ -1,19 +1,19 @@
 ### TEST ROUTE
-GET http://localhost:8080/api/v1
+GET http://localhost:8000/api/v1
 
 ### TEST ROUTE
-GET http://localhost:8080/api/v1/time
+GET http://localhost:8000/api/v1/time
 
         #-------------------------------------STATES---------------------------------------------------#
 
 ### GET STATES
-GET http://localhost:8080/api/v1/states
+GET http://localhost:8000/api/v1/states
 
 ### GET STATE BY ID
-GET http://localhost:8080/api/v1/states/2
+GET http://localhost:8000/api/v1/states/2
 
 ### CREATE STATE
-POST http://localhost:8080/api/v1/states HTTP/1.1
+POST http://localhost:8000/api/v1/states HTTP/1.1
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ### UPDATE STATE BY ID
-PUT http://localhost:8080/api/v1/states/24  HTTP/1.1
+PUT http://localhost:8000/api/v1/states/24  HTTP/1.1
 Content-Type: application/json
 
 {
@@ -31,19 +31,19 @@ Content-Type: application/json
 }
 
 ### DELETE STATE BY ID
-DELETE http://localhost:8080/api/v1/states/11
+DELETE http://localhost:8000/api/v1/states/11
 
 
     #-------------------------------------CITY---------------------------------------------------#
 ### GET CITY 
-GET http://localhost:8080/api/v1/cities
+GET http://localhost:8000/api/v1/cities
 
 ### GET CITY BY ID
-GET http://localhost:8080/api/v1/cities/8
+GET http://localhost:8000/api/v1/cities/8
 
 ### CREATE CITY
 
-POST http://localhost:8080/api/v1/cities HTTP/1.1
+POST http://localhost:8000/api/v1/cities HTTP/1.1
 Content-Type: application/json
 
 {
@@ -52,7 +52,7 @@ Content-Type: application/json
 }
 
 ### UPDATE CITY BY ID
-PUT http://localhost:8080/api/v1/cities/8 HTTP/1.1
+PUT http://localhost:8000/api/v1/cities/8 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -61,18 +61,18 @@ Content-Type: application/json
 }
 
 ### DELETE CITY BY ID
-DELETE http://localhost:8080/api/v1/cities/11
+DELETE http://localhost:8000/api/v1/cities/11
 
 
         #-----------------------------------ADDRESSES---------------------------------------------------#
 ### GET ALL ADDRESSES
-GET http://localhost:8080/api/v1/addresses
+GET http://localhost:8000/api/v1/addresses
 
 ### GET ADDRESS BY ID
-GET http://localhost:8080/api/v1/addresses/10
+GET http://localhost:8000/api/v1/addresses/10
 
 ### CREATE ADDRESS
-POST http://localhost:8080/api/v1/addresses HTTP/1.1
+POST http://localhost:8000/api/v1/addresses HTTP/1.1
 Content-Type: application/json
 
 {
@@ -85,7 +85,7 @@ Content-Type: application/json
 }
 
 ### UPDATE ADDRESS BY ID
-PUT http://localhost:8080/api/v1/addresses/10 HTTP/1.1
+PUT http://localhost:8000/api/v1/addresses/10 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -98,18 +98,18 @@ Content-Type: application/json
 }
 
 ### DELETE ADDRESS BY ID
-DELETE http://localhost:8080/api/v1/addresses/10
+DELETE http://localhost:8000/api/v1/addresses/10
 
         #------------------------------------- Restaurants  ---------------------------------------------------#
 
 ### GET ALL RESTAURANTS
-GET http://localhost:8080/api/v1/restaurants
+GET http://localhost:8000/api/v1/restaurants
 
 ### GET RESTAURANT BY ID
-GET http://localhost:8080/api/v1/restaurants/1
+GET http://localhost:8000/api/v1/restaurants/1
 
 ### CREATE RESTAURANT
-POST http://localhost:8080/api/v1/restaurants HTTP/1.1
+POST http://localhost:8000/api/v1/restaurants HTTP/1.1
 Content-Type: application/json
 
 {
@@ -120,7 +120,7 @@ Content-Type: application/json
 }
 
 ### UPDATE RESTAURANT BY ID
-PUT http://localhost:8080/api/v1/restaurants/5 HTTP/1.1
+PUT http://localhost:8000/api/v1/restaurants/5 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -131,19 +131,19 @@ Content-Type: application/json
 }
 
 ### DELETE RESTAURANT BY ID
-DELETE http://localhost:8080/api/v1/restaurants/6
+DELETE http://localhost:8000/api/v1/restaurants/6
 
         #------------------------------------- users ------------------------------------------------
 
 ### GET ALL USERS
-GET http://localhost:8080/api/v1/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraWJpY2hpaSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzE4MDQ3NzUwfQ.ROo8SkArkvYNqPK5gTf8HN-qmznWrVCJ5_mXWweawco
+GET http://localhost:8000/api/v1/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUaWZhbnkiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTgyMDE1ODh9.KBWRa1K7mhqbRz1uienZ4EXiQnB2A8hpgmW4rndxkdw
 
 ### GET USER BY ID
-GET http://localhost:8080/api/v1/users/4
+GET http://localhost:8000/api/v1/users/4
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUaWZhbnkiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTgwNDc5MjB9.xzpbgGa4daSkKrv_dnQd3kMq1wpIzO4oFTimrdbXXzo
 ### CREATE USER
-POST http://localhost:8080/api/v1/users HTTP/1.1
+POST http://localhost:8000/api/v1/users HTTP/1.1
 Content-Type: application/json
 
 {
@@ -157,11 +157,12 @@ Content-Type: application/json
 }
 
 ### UPDATE USER BY ID
-PUT http://localhost:8080/api/v1/users/5 HTTP/1.1
+PUT http://localhost:8000/api/v1/users/4 HTTP/1.1
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW1ib2kiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTgxODg3MDl9.iEFahgaV4is1jQG8GWg2G2a6QF_AYxkcIfvzpAPrfFM
 
 {
-    "name": "Mercy Chelimo",
+    "name": "Serah Kiarie",
     "contact_phone": "0712345678",
     "phone_verified": true,
     "email": "mercy@gmail.com",
@@ -171,18 +172,18 @@ Content-Type: application/json
 }	
 
 ### DELETE USER BY ID
-DELETE http://localhost:8080/api/v1/users/5
+DELETE http://localhost:8000/api/v1/users/5
 
         #------------------------------------- categories  ------------------------------------------------
 
 ### GET ALL CATEGORIES
-GET http://localhost:8080/api/v1/categories
+GET http://localhost:8000/api/v1/categories
 
 ### GET CATEGORY BY ID
-GET http://localhost:8080/api/v1/categories/5
+GET http://localhost:8000/api/v1/categories/5
 
 ### CREATE CATEGORY
-POST http://localhost:8080/api/v1/categories HTTP/1.1
+POST http://localhost:8000/api/v1/categories HTTP/1.1
 Content-Type: application/json
 
 {
@@ -190,7 +191,7 @@ Content-Type: application/json
 }
 
 ### UPDATE CATEGORY BY ID
-PUT http://localhost:8080/api/v1/categories/5 HTTP/1.1
+PUT http://localhost:8000/api/v1/categories/5 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -198,18 +199,18 @@ Content-Type: application/json
 }
 
 ### DELETE CATEGORY BY ID
-DELETE http://localhost:8080/api/v1/categories/5
+DELETE http://localhost:8000/api/v1/categories/5
 
         #------------------------------------- menu  ------------------------------------------------
 
 ### GET ALL MENUS
-GET http://localhost:8080/api/v1/menu
+GET http://localhost:8000/api/v1/menu
 
 ### GET MENU BY ID
-GET http://localhost:8080/api/v1/menu/5
+GET http://localhost:8000/api/v1/menu/5
 
 ### CREATE MENU
-POST http://localhost:8080/api/v1/menu HTTP/1.1
+POST http://localhost:8000/api/v1/menu HTTP/1.1
 Content-Type: application/json
 
 {
@@ -223,7 +224,7 @@ Content-Type: application/json
 }
 
 ### UPDATE MENU BY ID
-PUT http://localhost:8080/api/v1/menu/5 HTTP/1.1
+PUT http://localhost:8000/api/v1/menu/5 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -237,18 +238,18 @@ Content-Type: application/json
 }
 
 ### DELETE MENU BY ID
-DELETE http://localhost:8080/api/v1/menu/5
+DELETE http://localhost:8000/api/v1/menu/5
 
         #------------------------------------- restaurantOwners  ------------------------------------------------
 
 ### GET ALL RESTAURANTOWNERS
-GET http://localhost:8080/api/v1/restaurantOwners
+GET http://localhost:8000/api/v1/restaurantOwners
 
 ### GET RESTAURANTOWNER BY ID
-GET http://localhost:8080/api/v1/restaurantOwners/5
+GET http://localhost:8000/api/v1/restaurantOwners/5
 
 ### CREATE RESTAURANTOWNER
-POST http://localhost:8080/api/v1/restaurantOwners HTTP/1.1
+POST http://localhost:8000/api/v1/restaurantOwners HTTP/1.1
 Content-Type: application/json
 
     {
@@ -257,7 +258,7 @@ Content-Type: application/json
     }
 
 ### UPDATE RESTAURANTOWNER BY ID
-PUT http://localhost:8080/api/v1/restaurantOwners/5 HTTP/1.1
+PUT http://localhost:8000/api/v1/restaurantOwners/5 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -266,18 +267,18 @@ Content-Type: application/json
 }
 
 ### DELETE RESTAURANTOWNER BY ID
-DELETE http://localhost:8080/api/v1/restaurantOwners/5
+DELETE http://localhost:8000/api/v1/restaurantOwners/5
 
         #------------------------------------- drivers  ------------------------------------------------
 
 ### GET ALL DRIVERS
-GET http://localhost:8080/api/v1/drivers
+GET http://localhost:8000/api/v1/drivers
 
 ### GET DRIVER BY ID
-GET http://localhost:8080/api/v1/drivers/5
+GET http://localhost:8000/api/v1/drivers/5
 
 ### CREATE DRIVER
-POST http://localhost:8080/api/v1/drivers HTTP/1.1
+POST http://localhost:8000/api/v1/drivers HTTP/1.1
 Content-Type: application/json
 
 {
@@ -290,7 +291,7 @@ Content-Type: application/json
 }
 
 ### UPDATE DRIVER BY ID
-PUT http://localhost:8080/api/v1/drivers/5 HTTP/1.1
+PUT http://localhost:8000/api/v1/drivers/5 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -303,19 +304,19 @@ Content-Type: application/json
 }
 
 ### DELETE DRIVER BY ID
-DELETE http://localhost:8080/api/v1/drivers/5
+DELETE http://localhost:8000/api/v1/drivers/5
 
         #------------------------------------- orders  ------------------------------------------------
 
 ### GET ALL ORDERS
-GET http://localhost:8080/api/v1/orders
+GET http://localhost:8000/api/v1/orders
 
 ### GET ORDER BY ID
-GET http://localhost:8080/api/v1/orders/6
+GET http://localhost:8000/api/v1/orders/6
 
 
 ### CREATE ORDER
-POST http://localhost:8080/api/v1/orders HTTP/1.1
+POST http://localhost:8000/api/v1/orders HTTP/1.1
 Content-Type: application/json
 
 {
@@ -332,7 +333,7 @@ Content-Type: application/json
 }
 
 ### UPDATE ORDER BY ID
-PUT http://localhost:8080/api/v1/orders/6 HTTP/1.1
+PUT http://localhost:8000/api/v1/orders/6 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -349,18 +350,18 @@ Content-Type: application/json
 }
 
 ### DELETE ORDER BY ID
-DELETE http://localhost:8080/api/v1/orders/6
+DELETE http://localhost:8000/api/v1/orders/6
 
         #------------------------------------- orderMenuItems  ------------------------------------------------
 
 ### GET ALL ORDERMENUITEMS
-GET http://localhost:8080/api/v1/orderMenuItems
+GET http://localhost:8000/api/v1/orderMenuItems
 
 ### GET ORDERMENUITEM BY ID
-GET http://localhost:8080/api/v1/orderMenuItems/5
+GET http://localhost:8000/api/v1/orderMenuItems/5
 
 ### CREATE ORDERMENUITEM
-POST http://localhost:8080/api/v1/orderMenuItems HTTP/1.1
+POST http://localhost:8000/api/v1/orderMenuItems HTTP/1.1
 Content-Type: application/json
 
 {
@@ -373,7 +374,7 @@ Content-Type: application/json
 }
 
 ### UPDATE ORDERMENUITEM BY ID
-PUT http://localhost:8080/api/v1/orderMenuItems/5 HTTP/1.1
+PUT http://localhost:8000/api/v1/orderMenuItems/5 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -386,18 +387,18 @@ Content-Type: application/json
 }
 
 ### DELETE ORDERMENUITEM BY ID
-DELETE http://localhost:8080/api/v1/orderMenuItems/5
+DELETE http://localhost:8000/api/v1/orderMenuItems/5
 
         #------------------------------------- statusCatalog  ------------------------------------------------
 
 ### GET ALL STATUSCATALOGS
-GET http://localhost:8080/api/v1/statusCatalog
+GET http://localhost:8000/api/v1/statusCatalog
 
 ### GET STATUSCATALOG BY ID
-GET http://localhost:8080/api/v1/statusCatalog/4
+GET http://localhost:8000/api/v1/statusCatalog/4
 
 ### CREATE STATUSCATALOG
-POST http://localhost:8080/api/v1/statusCatalog HTTP/1.1
+POST http://localhost:8000/api/v1/statusCatalog HTTP/1.1
 Content-Type: application/json
 
 {
@@ -406,7 +407,7 @@ Content-Type: application/json
 }
 
 ### UPDATE STATUSCATALOG BY ID
-PUT http://localhost:8080/api/v1/statusCatalog/5 HTTP/1.1
+PUT http://localhost:8000/api/v1/statusCatalog/5 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -415,18 +416,18 @@ Content-Type: application/json
 }
 
 ### DELETE STATUSCATALOG BY ID
-DELETE http://localhost:8080/api/v1/statusCatalog/5
+DELETE http://localhost:8000/api/v1/statusCatalog/5
 
         #------------------------------------- orderStatus  ------------------------------------------------
 
 ### GET ALL ORDERSTATUS
-GET http://localhost:8080/api/v1/orderStatus
+GET http://localhost:8000/api/v1/orderStatus
 
 ### GET ORDERSTATUS BY ID
-GET http://localhost:8080/api/v1/orderStatus/11
+GET http://localhost:8000/api/v1/orderStatus/11
 
 ### CREATE ORDERSTATUS
-POST http://localhost:8080/api/v1/orderStatus HTTP/1.1
+POST http://localhost:8000/api/v1/orderStatus HTTP/1.1
 Content-Type: application/json
 
 {
@@ -435,7 +436,7 @@ Content-Type: application/json
 }
 
 ### UPDATE ORDERSTATUS BY ID
-PUT http://localhost:8080/api/v1/orderStatus/9 HTTP/1.1
+PUT http://localhost:8000/api/v1/orderStatus/9 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -444,18 +445,18 @@ Content-Type: application/json
 }
 
 ### DELETE ORDERSTATUS BY ID
-DELETE http://localhost:8080/api/v1/orderStatus/9
+DELETE http://localhost:8000/api/v1/orderStatus/9
 
         #------------------------------------- comments  ------------------------------------------------
 
 ### GET ALL COMMENTS
-GET http://localhost:8080/api/v1/comments
+GET http://localhost:8000/api/v1/comments
 
 ### GET COMMENT BY ID
-GET http://localhost:8080/api/v1/comments/5
+GET http://localhost:8000/api/v1/comments/5
 
 ### CREATE COMMENT
-POST http://localhost:8080/api/v1/comments HTTP/1.1
+POST http://localhost:8000/api/v1/comments HTTP/1.1
 Content-Type: application/json
 
 {
@@ -467,7 +468,7 @@ Content-Type: application/json
 }
 
 ### UPDATE COMMENT BY ID
-PUT http://localhost:8080/api/v1/comments/5 HTTP/1.1
+PUT http://localhost:8000/api/v1/comments/5 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -479,11 +480,11 @@ Content-Type: application/json
 }
 
 ### DELETE COMMENT BY ID
-DELETE http://localhost:8080/api/v1/comments/5
+DELETE http://localhost:8000/api/v1/comments/5
 
         #-------------------------------------api/v1/auth/register ------------------------------------------------
 ### REGISTER USER
-POST http://localhost:8080/api/v1/auth/register HTTP/1.1
+POST http://localhost:8000/api/v1/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
@@ -496,7 +497,7 @@ Content-Type: application/json
 
         #-------------------------------------api/v1/auth/login ------------------------------------------------#
 ### LOGIN USER
-POST http://localhost:8080/api/v1/auth/login HTTP/1.1
+POST http://localhost:8000/api/v1/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
