@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
-import {db} from "../drizzle/db";
-import { TIDriver, TSDriver, driverTable } from "../drizzle/schema";
+import { db } from "../drizzle/db";
+import { TIDriver, TSDriver, driverTable, usersTable } from "../drizzle/schema";
+
 
 // GET ALL DRIVERS
 export const getDriversService = async (): Promise<TSDriver[] | null> => {
@@ -32,4 +33,28 @@ export const updateDriverService = async (id: number, driver: TIDriver) => {
 export const deleteDriverService = async (id: number) => {
     await db.delete(driverTable).where(eq(driverTable.id, id));
     return "driver deleted successfully";
+}
+
+// driverWithOrders
+export const getDriverWithOrdersService = async (id: number) => {
+    const driver = await db.query.driverTable.findFirst({
+        where: eq(driverTable.id, id), // instead of ||, to join the table, you can use the join method
+        columns: {
+            id: true,
+            car_model: true,
+            car_make: true,
+            online: true,
+        },
+        with: {
+            orders: {
+                columns: {
+                    restaurant_id: true,
+                    delivery_address: true,
+                    estimated_delivery_time: true,
+                }
+            }
+        },
+        
+    });
+    return driver;
 }

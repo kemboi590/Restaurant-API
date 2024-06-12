@@ -30,4 +30,4 @@ userRouter
 
 // get user with orders
 userRouter
-    .get("users/:id/orders", getUserWithOrdersController)
+    .get("users/:id/orders",bothRoleAuth, getUserWithOrdersController)

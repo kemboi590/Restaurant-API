@@ -2,26 +2,27 @@ import { Hono } from 'hono'
 import { getRestaurantsController, getRestaurantByIdController, createRestaurantController, updateRestaurantController, deleteRestaurantController } from './restaurant.controller'
 import { zValidator } from '@hono/zod-validator';
 import { restaurantSchema } from '../validators';
+import { adminRoleAuth, userRoleAuth, bothRoleAuth } from './../middleware/baerAuth';
 
 
 export const restaurantRouter = new Hono()
 
 // get all restaurants
 restaurantRouter
-    .get("restaurants", getRestaurantsController)
+    .get("restaurants", bothRoleAuth, getRestaurantsController)
     .post("restaurants", zValidator('json', restaurantSchema, (result, c) => {
         if (!result.success) {
             return c.json(result.error, 400);
         }
-    }), createRestaurantController)
+    }), adminRoleAuth, createRestaurantController)
 
 
 // get restaurant by id
 restaurantRouter
-    .get("restaurants/:id", getRestaurantByIdController)
+    .get("restaurants/:id", bothRoleAuth, getRestaurantByIdController)
     .put("restaurants/:id", zValidator('json', restaurantSchema, (result, c) => {
         if (!result.success) {
             return c.json(result.error, 400);
         }
-    }), updateRestaurantController)
-    .delete("restaurants/:id", deleteRestaurantController)
+    }), adminRoleAuth, updateRestaurantController)
+    .delete("restaurants/:id", adminRoleAuth, deleteRestaurantController)

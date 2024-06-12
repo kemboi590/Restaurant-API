@@ -3,31 +3,33 @@ import { getStatesController, getStateByIdController, createStateController, upd
      deleteStateController, getStateWithCitiesController } from './states.controller';
 import { zValidator } from '@hono/zod-validator';
 import { stateSchema } from '../validators';
+import { adminRoleAuth, userRoleAuth, bothRoleAuth } from './../middleware/baerAuth';
+
 
 
 export const stateRouter = new Hono()
 
 // get all states
 stateRouter
-    .get("/states", getStatesController)
+    .get("/states",bothRoleAuth, getStatesController)
     .post("states", zValidator('json', stateSchema, (result, c) => {
         if (!result.success) {
             return c.json(result.error, 400);
         }
-    }), createStateController)
+    }),adminRoleAuth, createStateController)
 
 // get state by id
 stateRouter
-    .get("states/:id", getStateByIdController)
+    .get("states/:id",bothRoleAuth, getStateByIdController)
     .put("states/:id", zValidator('json', stateSchema, (result, c) => {
         if (!result.success) {
             return c.json(result.error, 400);
         }
     }), updateStateController)
-    .delete("states/:id", deleteStateController)
+    .delete("states/:id",adminRoleAuth, deleteStateController)
 
 // get state with cities
 stateRouter
-    .get("states/:id/cities", getStateWithCitiesController)
+    .get("states/:id/cities",bothRoleAuth, getStateWithCitiesController)
     
 

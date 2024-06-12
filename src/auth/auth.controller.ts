@@ -33,7 +33,7 @@ export const loginUserController = async (c: Context) => {
             const payload = {
                 sub: userExists?.username,
                 role: userExists?.role,
-                exp: Math.floor(Date.now() / 1000) + (60 * 180) // 3 hours
+                exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 3) // 3 days
             }
 
             let secret = process.env.JWT_SECRET as string; // secret key

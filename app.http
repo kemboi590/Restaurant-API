@@ -510,8 +510,12 @@ Content-Type: application/json
 
 
 ### Get comment with user
+
 GET http://localhost:8000/api/v1/comments/1/user
 
 ### get user with orders
 GET http://localhost:8000/api/v1/users/1/orders
+
+### get driver with address
+GET http://localhost:8000/api/v1/drivers/2/orders
         
