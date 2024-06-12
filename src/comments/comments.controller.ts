@@ -1,5 +1,9 @@
 import { Context } from "hono";
-import { getCommentsService, getCommentByIdService, createCommentService, updateCommentService, deleteCommentService } from "./comments.service";
+import {
+    getCommentsService, getCommentByIdService, createCommentService, updateCommentService,
+    deleteCommentService, getCommentWithUserService
+
+} from "./comments.service";
 
 // get all comments
 export const getCommentsController = async (c: Context) => {
@@ -76,6 +80,23 @@ export const deleteCommentController = async (c: Context) => {
         const res = await deleteCommentService(id);
         if (!res) return c.text("Comment not deleted", 400);
         return c.json({ message: res }, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 500);
+    }
+};
+
+// commentwithUser
+export const getCommentWithUserController = async (c: Context) => {
+    try {
+        const id = parseInt(c.req.param("id"));
+        if (isNaN(id)) {
+            return c.text("Invalid id", 400);
+        }
+        const comment = await getCommentWithUserService(id);
+        if (comment == null) {
+            return c.text("Comment not found", 404);
+        }
+        return c.json(comment, 200);
     } catch (error: any) {
         return c.json({ error: error?.message }, 500);
     }

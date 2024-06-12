@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator';
-import { getCommentsController, getCommentByIdController, createCommentController, updateCommentController, deleteCommentController } from './comments.controller';
+import { getCommentsController, getCommentByIdController, createCommentController, 
+    updateCommentController, deleteCommentController, getCommentWithUserController } from './comments.controller';
 import { commentsSchema } from "../validators";
 
 export const commentsRouter = new Hono()
@@ -24,3 +25,7 @@ commentsRouter
         }
     }), updateCommentController)
     .delete("comments/:id", deleteCommentController)
+
+// get comment with user
+commentsRouter
+    .get("comments/:id/user", getCommentWithUserController)

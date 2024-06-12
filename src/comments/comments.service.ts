@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import {db} from "../drizzle/db";
+import { db } from "../drizzle/db";
 import { TIComments, TSComments, commentsTable } from "../drizzle/schema";
 
 // GET ALL COMMENTS
@@ -32,4 +32,15 @@ export const updateCommentService = async (id: number, comment: TIComments) => {
 export const deleteCommentService = async (id: number) => {
     await db.delete(commentsTable).where(eq(commentsTable.id, id));
     return "comment deleted successfully";
+}
+
+// commentwithUser
+export const getCommentWithUserService = async (id: number): Promise<TSComments | undefined> => {
+    const comment = await db.query.commentsTable.findFirst({
+        where: eq(commentsTable.id, id),
+        with: {
+            user: true
+        }
+    });
+    return comment;
 }

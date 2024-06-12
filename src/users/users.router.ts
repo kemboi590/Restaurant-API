@@ -1,5 +1,8 @@
 import { Hono } from 'hono'
-import { getUsersController, getUserByIdController, createUserController, updateUserController, deleteUserController } from './users.controller'
+import {
+    getUsersController, getUserByIdController, createUserController, updateUserController,
+    deleteUserController, getUserWithOrdersController
+} from './users.controller'
 import { zValidator } from '@hono/zod-validator';
 import { userSchema } from '../validators';
 import { adminRoleAuth, userRoleAuth, bothRoleAuth } from './../middleware/baerAuth';
@@ -24,3 +27,7 @@ userRouter
         }
     }), bothRoleAuth, updateUserController)
     .delete("users/:id", bothRoleAuth, deleteUserController)
+
+// get user with orders
+userRouter
+    .get("users/:id/orders", getUserWithOrdersController)

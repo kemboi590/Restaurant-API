@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "../drizzle/db";
 
-import { TIUsers, TSUsers, usersTable } from "../drizzle/schema";
+import { TIUsers, TSUsers, commentsTable, ordersTable, usersTable } from "../drizzle/schema";
 
 // GET ALL USERS
 export const getUsersService = async (): Promise<TSUsers[] | null> => {
@@ -33,4 +33,26 @@ export const updateUserService = async (id: number, user: TIUsers) => {
 export const deleteUserService = async (id: number) => {
     await db.delete(usersTable).where(eq(usersTable.id, id));
     return "user deleted successfully";
+}
+
+// userwithComments
+export const getUserWithCommentsService = async (id: number): Promise<TSUsers | undefined> => {
+    const user = await db.query.usersTable.findFirst({
+        where: eq(usersTable.id, id),
+        with: {
+            comments: true
+        }
+    });
+    return user;
+}
+
+// userswithOrders
+export const getUsersWithOrdersService = async (id: number): Promise<TSUsers | undefined> => {
+    const user = await db.query.usersTable.findFirst({
+        where: eq(usersTable.id, id),
+        with: {
+            orders: true,
+        }
+    });
+    return user;
 }

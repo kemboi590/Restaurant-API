@@ -1,5 +1,5 @@
 ### TEST ROUTE
-GET http://localhost:8000/api/v1
+GET https://my-restaurant-api.azurewebsites.net/api/v1
 
 ### TEST ROUTE
 GET http://localhost:8000/api/v1/time
@@ -33,6 +33,9 @@ Content-Type: application/json
 ### DELETE STATE BY ID
 DELETE http://localhost:8000/api/v1/states/11
 
+
+### get states with cities 
+GET http://localhost:8000/api/v1/states/1/cities
 
     #-------------------------------------CITY---------------------------------------------------#
 ### GET CITY 
@@ -505,4 +508,10 @@ Content-Type: application/json
     "password": "pass"
 }
 
+
+### Get comment with user
+GET http://localhost:8000/api/v1/comments/1/user
+
+### get user with orders
+GET http://localhost:8000/api/v1/users/1/orders
         

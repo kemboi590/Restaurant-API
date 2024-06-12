@@ -34,3 +34,4 @@ export const deleteOrderService = async (id: number) => {
     await db.delete(ordersTable).where(eq(ordersTable.id, id));
     return "order deleted successfully";
 }
+
