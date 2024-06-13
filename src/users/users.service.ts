@@ -72,3 +72,26 @@ export const getUsersWithOrdersService = async (id: number) => {
     });
     return user;
 }
+
+
+// getuserAddress
+export const getUserAddressService = async (id: number) => {
+    const user = await db.query.usersTable.findFirst({
+        where: eq(usersTable.id, id),
+        columns: {
+            name: true,
+            contact_phone: true,
+        },
+        with: {
+            addresses: {
+                columns: {
+                    street_address_1: true,
+                    zip_code: true,
+                    delivery_instructions: true,
+                }
+            }
+
+        }
+    });
+    return user;
+}
