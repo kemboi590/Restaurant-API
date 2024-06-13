@@ -49,12 +49,12 @@ export const getDriverWithOrdersService = async (id: number) => {
             orders: {
                 columns: {
                     restaurant_id: true,
-                    delivery_address: true,
+                    delivery_address_id: true,
                     estimated_delivery_time: true,
                 }
             }
         },
-        
+
     });
     return driver;
 }
