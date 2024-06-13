@@ -40,6 +40,12 @@ export const deleteRestaurantService = async (id: number) => {
 export const getRestaurantWithOrdersService = async (id: number) => {
     const restaurant = await db.query.restaurantTable.findFirst({
         where: eq(restaurantTable.id, id),
+        columns: {
+            id: true,
+            name: true,
+            street_address: true,
+
+        },
         with: {
             orders: {
                 columns: {
