@@ -170,169 +170,8 @@ export const commentsTable = pgTable("comments", {
   updated_at: timestamp("updated_at").default(sql`NOW()`).notNull(),
 });
 
-/*
-                                            RELATIONSHIPS
-*/
-//===================================================================================================//
-
-// 5. Restaurant and Menu Item relationship
-export const menuItemRelations = relations(menuItemTable, ({ one }) => ({  //denotes the relationship between restaurant and menu item
-  restaurant: one(restaurantTable, {    // one menu item belongs to one restaurant
-    fields: [menuItemTable.restaurant_id], references: [restaurantTable.id],
-  }),
-  category: one(categoryTable, {    // one menu item belongs to one category
-    fields: [menuItemTable.category_id], references: [categoryTable.id],
-  }),
-}));
-
-export const restaurantMenuItemsRelations = relations(restaurantTable,
-  ({ many }) => ({    //denotes the relationship between restaurant and menu item
-    menuItems: many(menuItemTable), // one restaurant can have many menu items
-  })
-);
-
-// 6. Menu Item and Category relationship
-export const categoryMenuItemsRelations = relations(categoryTable, ({ many }) => ({    //denotes the relationship between category and menu item
-  menuItems: many(menuItemTable), // one category can have many menu items
-})
-);
-
-// 4. Address and User relationship
-export const userAddressRelations = relations(usersTable, ({ many }) => ({  //denotes the relationship between user and address
-  addresses: many(addressTable), // one user can have many addresses
-}));
-
-// 1. State and City relationship
-export const stateRelations = relations(stateTable, ({ many }) => ({  //denotes the relationship between state and city
-  cities: many(cityTable), // one state can have many cities
-}));
-
-export const cityRelations = relations(cityTable, ({ one }) => ({  // denotes the relationship between city and state
-  state: one(stateTable, {    // one city belongs to one state
-    fields: [cityTable.state_id], references: [stateTable.id],
-  }),
-}));
-
-// 2. City and Address relationship
-export const addressRelations = relations(addressTable, ({ one }) => ({  //denotes the relationship between city and address
-  city: one(cityTable, {    // one address belongs to one city
-    fields: [addressTable.city_id], references: [cityTable.id],
-  }),
-  user: one(usersTable, {    // one address belongs to one user
-    fields: [addressTable.user_id], references: [usersTable.id],
-  }),
-}));
-
-export const cityAddressRelations = relations(cityTable, ({ many }) => ({  //denotes the relationship between city and address
-  addresses: many(addressTable),
-}));
-
-// 3. City and Restaurant relationship
-export const cityRestaurantRelations = relations(cityTable, ({ many }) => ({  //denotes the relationship between city and restaurant
-  restaurants: many(restaurantTable), // one city can have many restaurants
-}));
-
-export const restaurantRelations = relations(restaurantTable, ({ one }) => ({  //denotes the relationship between restaurant and city
-  city: one(cityTable, {    // one restaurant belongs to one city
-    fields: [restaurantTable.city_id], references: [cityTable.id],
-  }),
-}));
-
-// 7. Restaurant and Owner relationship
-export const restaurantOwnerRelations = relations(restaurantOwnerTable, ({ one }) => ({    //denotes the relationship between restaurant and owner
-  restaurant: one(restaurantTable, {      // one owner belongs to one restaurant
-    fields: [restaurantOwnerTable.restaurant_id], references: [restaurantTable.id],
-  }),
-  owner: one(usersTable, {    // one owner belongs to one user
-    fields: [restaurantOwnerTable.owner_id], references: [usersTable.id],
-  }),
-})
-);
-
-// 8. Order and User relationship
-export const userOrderRelations = relations(usersTable, ({ many }) => ({  //denotes the relationship between user and order
-  orders: many(ordersTable), // one user can have many orders
-}));
-
-export const orderUserRelations = relations(ordersTable, ({ one }) => ({  //denotes the relationship between order and user
-  user: one(usersTable, {    // one order belongs to one user
-    fields: [ordersTable.user_id], references: [usersTable.id],
-  }),
-}));
-
-// 9. Order and Restaurant relationship
-export const orderRestaurantRelations = relations(ordersTable, ({ one }) => ({  //denotes the relationship between order and restaurant
-  restaurant: one(restaurantTable, {    // one order belongs to one restaurant
-    fields: [ordersTable.restaurant_id], references: [restaurantTable.id],
-  }),
-}));
-
-
-export const restaurantOrderRelations = relations(
-  restaurantTable, ({ many }) => ({    // denotes the relationship between restaurant and order
-    orders: many(ordersTable), // one restaurant can have many orders
-  })
-);
-
-// 10. Order and Driver relationship
-export const driverOrderRelations = relations(driverTable, ({ many }) => ({  //denotes the relationship between driver and order
-  orders: many(ordersTable), // one driver can have many orders
-}));
-
-export const orderDriverRelations = relations(ordersTable, ({ one }) => ({  //denotes the relationship between order and driver
-  driver: one(driverTable, {    // one order belongs to one driver
-    fields: [ordersTable.driver_id], references: [driverTable.id],
-  }),
-}));
-
-// 11. Order and Menu Item relationship
-export const orderMenuItemRelations = relations(orderMenuItemTable, ({ one }) => ({    //denotes the relationship between order and menu item
-  order: one(ordersTable, {      // one order belongs to one menu item
-    fields: [orderMenuItemTable.order_id], references: [ordersTable.id],
-  }),
-  menuItem: one(menuItemTable, {      // one order belongs to one menu item
-    fields: [orderMenuItemTable.menu_item_id], references: [menuItemTable.id],
-  }),
-})
-);
-
-// 12. Order and Status relationship
-export const orderStatusRelations = relations(orderStatusTable, ({ one }) => ({  //denotes the relationship between order and status
-  order: one(ordersTable, {    // one status belongs to one order
-    fields: [orderStatusTable.order_id], references: [ordersTable.id],
-  }),
-  statusCatalog: one(statusCatalogTable, {    // one status belongs to one status catalog
-    fields: [orderStatusTable.status_catalog_id], references: [statusCatalogTable.id],
-  }),
-}));
-
-// 13. Status and Catalog relationship
-export const statusCatalogRelations = relations(statusCatalogTable, ({ many }) => ({    //denotes the relationship between status and catalog
-  statuses: many(orderStatusTable), // one status can have many orders
-})
-);
-
-// 14. Order and Comments relationship
-export const orderCommentRelations = relations(commentsTable, ({ one }) => ({  //denotes the relationship between order and comments
-  order: one(ordersTable, {    // one comment belongs to one order
-    fields: [commentsTable.order_id], references: [ordersTable.id],
-  }),
-  user: one(usersTable, {    // one comment belongs to one user
-    fields: [commentsTable.user_id], references: [usersTable.id],
-  }),
-}));
-
-export const orderCommentsRelations = relations(ordersTable, ({ many }) => ({  //denotes the relationship between order and comments
-  comments: many(commentsTable), // one order can have many comments
-}));
-
-// 15. User and Comments relationship
-export const userCommentRelations = relations(usersTable, ({ many }) => ({  //denotes the relationship between user and comments
-  comments: many(commentsTable), // one user can have many comments
-}));
 
 //===========================================// new relationships //===========================================//
-
 
 // orderRelationships
 export const orderRelationships = relations(ordersTable, ({ one, many }) => ({
@@ -348,18 +187,143 @@ export const orderRelationships = relations(ordersTable, ({ one, many }) => ({
     fields: [ordersTable.restaurant_id],
     references: [restaurantTable.id],
   }),
-  delivery_address: one(addressTable, { 
+  delivery_address: one(addressTable, {
     fields: [ordersTable.delivery_address_id],
     references: [addressTable.id],
   }),
   order_status: many(orderStatusTable),
   order_menu_items: many(orderMenuItemTable),
   menuItem: many(menuItemTable),
-
 })
-
-
 );
+
+// restorant relationships
+export const restaurantRelationships = relations(restaurantTable, ({ one, many }) => ({
+  city: one(cityTable, {
+    fields: [restaurantTable.city_id],
+    references: [cityTable.id],
+  }),
+  orders: many(ordersTable),
+  menuItem: many(menuItemTable),
+  restaurantOnwer: many(restaurantOwnerTable),
+
+}));
+
+// users relationship
+export const usersRelationships = relations(usersTable, ({ many }) => ({
+  address: many(addressTable),
+  orders: many(ordersTable),
+  comments: many(commentsTable),
+  auth: many(AuthOnUsersTable),
+}));
+
+// driver relationships
+export const driverRelationships = relations(driverTable, ({ one, many }) => ({
+  user: one(usersTable, {
+    fields: [driverTable.user_id],
+    references: [usersTable.id],
+  }),
+  orders: many(ordersTable),
+}));
+
+// menuItem relationships
+export const menuItemRelationships = relations(menuItemTable, ({ one, many }) => ({
+  restaurant: one(restaurantTable, {
+    fields: [menuItemTable.restaurant_id],
+    references: [restaurantTable.id],
+  }),
+  category: one(categoryTable, {
+    fields: [menuItemTable.category_id],
+    references: [categoryTable.id],
+  }),
+  order_menu_items: many(orderMenuItemTable),
+}));
+
+// category relationships
+export const categoryRelationships = relations(categoryTable, ({ many }) => ({
+  menuItem: many(menuItemTable),
+}));
+
+// orderMenuItem relationships
+export const orderMenuItemRelationships = relations(orderMenuItemTable, ({ one }) => ({
+  order: one(ordersTable, {
+    fields: [orderMenuItemTable.order_id],
+    references: [ordersTable.id],
+  }),
+  menuItem: one(menuItemTable, {
+    fields: [orderMenuItemTable.menu_item_id],
+    references: [menuItemTable.id],
+  }),
+}));
+
+// order status relationships
+export const orderStatusRelationships = relations(orderStatusTable, ({ one }) => ({
+  order: one(ordersTable, {
+    fields: [orderStatusTable.order_id],
+    references: [ordersTable.id],
+  }),
+  statusCatalog: one(statusCatalogTable, {
+    fields: [orderStatusTable.status_catalog_id],
+    references: [statusCatalogTable.id],
+  }),
+}));
+
+// status catalog relationships
+export const statusCatalogRelationships = relations(statusCatalogTable, ({ many }) => ({
+  orderStatus: many(orderStatusTable),
+}));
+
+// comments relationships
+export const commentsRelationships = relations(commentsTable, ({ one }) => ({
+  order: one(ordersTable, {
+    fields: [commentsTable.order_id],
+    references: [ordersTable.id],
+  }),
+  user: one(usersTable, {
+    fields: [commentsTable.user_id],
+    references: [usersTable.id],
+  }),
+}));
+
+// state relationships
+export const stateRelationships = relations(stateTable, ({ many }) => ({
+  city: many(cityTable),
+}));
+
+// city relationships
+export const cityRelationships = relations(cityTable, ({ one, many }) => ({
+  state: one(stateTable, {
+    fields: [cityTable.state_id],
+    references: [stateTable.id],
+  }),
+  address: many(addressTable),
+  restaurant: many(restaurantTable),
+}));
+
+// address relationships
+export const addressRelationships = relations(addressTable, ({ one, many }) => ({
+  city: one(cityTable, {
+    fields: [addressTable.city_id],
+    references: [cityTable.id],
+  }),
+  user: one(usersTable, {
+    fields: [addressTable.user_id],
+    references: [usersTable.id],
+  }),
+  orders: many(ordersTable),
+}));
+
+// restaurant owner relationships
+export const restaurantOwnerRelationships = relations(restaurantOwnerTable, ({ one }) => ({
+  restaurant: one(restaurantTable, {
+    fields: [restaurantOwnerTable.restaurant_id],
+    references: [restaurantTable.id],
+  }),
+  owner: one(usersTable, {
+    fields: [restaurantOwnerTable.owner_id],
+    references: [usersTable.id],
+  }),
+}));
 
 
 // State table
