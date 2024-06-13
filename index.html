@@ -157,11 +157,12 @@
         <h2>Overview</h2>
         <p>
           Welcome to the Restaurants API documentation. This API allows you to
-          retrieve information about restaurants and cities with restaurants and more.
+          retrieve information about restaurants and cities with restaurants and
+          more.
         </p>
         <p>
-          The restaurants API is designed to provide developers with a simple and
-          efficient way to access our database of restaurant information.
+          The restaurants API is designed to provide developers with a simple
+          and efficient way to access our database of restaurant information.
           Whether you are building a restaurant review app, a city guide, or any
           other project, our API has you covered.
         </p>
@@ -172,46 +173,127 @@
       </section>
       <section id="endpoints">
         <h2>Endpoints</h2>
-        <h3>GET /restaurants</h3>
-        <p>Retrieve a list of all restaurants.</p>
-        <pre><code>GET /api/restaurants</code></pre>
 
-        <h3>GET /restaurants/:id</h3>
-        <p>Retrieve details of a specific restaurant by ID.</p>
-        <pre><code>GET /api/restaurants/:id</code></pre>
+        <h3>Test Routes</h3>
+        <p>Test the API connectivity.</p>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/time</code></pre>
 
-        <h3>GET /citieswithrestaurants</h3>
-        <p>Retrieve a list of cities that have restaurants.</p>
-        <pre><code>GET /api/citieswithrestaurants</code></pre>
+        <h3>States</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/states</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/states/2</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/states</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/states/24</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/states/11</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/states/1/cities</code></pre>
+
+        <h3>Cities</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/cities</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/cities/8</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/cities</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/cities/8</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/cities/11</code></pre>
+
+        <h3>Addresses</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/addresses</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/addresses/10</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/addresses</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/addresses/10</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/addresses/10</code></pre>
+
+        <h3>Restaurants</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/restaurants</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/restaurants/1</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/restaurants</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/restaurants/5</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/restaurants/6</code></pre>
+
+        <h3>Users</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/users</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/users/4</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/users</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/users/4</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/users/5</code></pre>
+
+        <h3>Categories</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/categories</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/categories/5</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/categories</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/categories/5</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/categories/5</code></pre>
+
+        <h3>Menu</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/menu</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/menu/5</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/menu</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/menu/5</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/menu/5</code></pre>
+
+        <h3>Restaurant Owners</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/restaurantOwners</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/restaurantOwners/5</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/restaurantOwners</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/restaurantOwners/5</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/restaurantOwners/5</code></pre>
+
+        <h3>Drivers</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/drivers</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/drivers/5</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/drivers</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/drivers/5</code></pre>
+
+        <h3>Orders</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/orders</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/orders/5</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/orders</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/orders/5</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/orders/5</code></pre>
+
+        <h3>Order Items</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/orderMenuItems</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/orderMenuItems/5</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/orderMenuItems</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/orderMenuItems/5</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/orderMenuItems/5</code></pre>
+
+        <h3>Status Catalog</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/statusCatalog</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/statusCatalog/5</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/statusCatalog</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/statusCatalog/5</code></pre>
+
+        <h3>Order Status</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/orderStatus</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/orderStatus/5</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/orderStatus</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/orderStatus/5</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/orderStatus/5</code></pre>
+
+        <h3>Comments</h3>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/comments</code></pre>
+        <pre><code>GET https://my-restaurant-api.azurewebsites.net/comments/5</code></pre>
+        <pre><code>POST https://my-restaurant-api.azurewebsites.net/comments</code></pre>
+        <pre><code>PUT https://my-restaurant-api.azurewebsites.net/comments/5</code></pre>
+        <pre><code>DELETE https://my-restaurant-api.azurewebsites.net/comments/5</code></pre>
       </section>
       <section id="examples">
         <h2>Examples</h2>
-        <h3>Get all restaurants</h3>
-        <pre><code>GET https://my-restaurant-api.azurewebsites.net/restaurants</code></pre>
-
-        <h3>Get a specific restaurant by ID</h3>
-        <pre><code>GET https://my-restaurant-api.azurewebsites.net/restaurants/{id}</code></pre>
-
-        <h3>Get all cities with restaurants</h3>
-        <pre><code>GET https://my-restaurant-api.azurewebsites.net/citieswithrestaurants</code></pre>
+        <p>Example requests will be provided here...</p>
       </section>
       <section id="contact">
         <h2>Contact</h2>
         <p>
-          If you have any questions or need further assistance, please contact
-          me team at: <br>
-           <h3>You can also reach me directly via email at </h3>
-          <a href="mailto:bkemboi590@gmail.com">bkemboi590@gmail.com</a>
-          <h3>Connect with me on LinkedIn:</h3>
-          <a href="https://www.linkedin.com/in/kibichii-brian/">Brian Kemboi</a>
+          For any questions or support, please contact us at
+          <a href="mailto:support@restaurantsapi.com"
+            >support@restaurantsapi.com</a
+          >.
         </p>
       </section>
     </main>
     <footer>
       <p>
-        &copy; 2024 Restaurants . All rights reserved.
-        <a href="/terms">Terms of Service</a> |
-        <a href="/privacy">Privacy Policy</a>
+        © 2024 Teach2Give. All rights reserved. |
+        <a href="privacy.html">Privacy Policy</a>
       </p>
     </footer>
   </body>
