@@ -528,3 +528,9 @@ GET http://localhost:8000/users/1/address
 
 ### get restaurant with orders -> restaurants/:id/orders
 GET http://localhost:8000/restaurants/1/orders
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW1ib2kiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTg1NjM4Mjl9.AZzGgCXCQLAKmD56VqUD1e6JruL0aLwxJrjM3xxumMI
+
+### get all order details: orders/details
+
+GET http://localhost:8000/orders/1/details
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW1ib2kiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MTg1NjM4Mjl9.AZzGgCXCQLAKmD56VqUD1e6JruL0aLwxJrjM3xxumMI

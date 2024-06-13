@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator';
-import { getOrdersController, getOrderByIdController, createOrderController, updateOrderController, deleteOrderController } from './orders.controllers';
+import { getOrdersController, getOrderByIdController, createOrderController, 
+    updateOrderController, deleteOrderController , getOrderDetailsController} from './orders.controllers';
 import { orderSchema } from "../validators";
 import { adminRoleAuth, userRoleAuth, bothRoleAuth } from './../middleware/baerAuth';
 
@@ -25,3 +26,6 @@ ordersRouter
         }
     }),bothRoleAuth, updateOrderController)
     .delete("orders/:id", bothRoleAuth, deleteOrderController)
+
+// get order details
+ordersRouter.get("orders/:id/details",bothRoleAuth, getOrderDetailsController)

@@ -18,19 +18,19 @@ export const getAddressByIdService = async (id: number): Promise<TSAddress | und
 }
 
 // CREATE ADDRESS
-export const createAddressService = async (address: TIAddress) => {
+export const createAddressService = async (address: TIAddress):Promise<string> => {
     await db.insert(addressTable).values(address)
     return "address created successfully";
 }
 
 //  UPDATE ADDRESS
-export const updateAddressService = async (id: number, address: TIAddress) => {
+export const updateAddressService = async (id: number, address: TIAddress):Promise<string> => {
     await db.update(addressTable).set(address).where(eq(addressTable.id, id));
     return "address updated successfully";
 }
 
 // DELETE ADDRESS
-export const deleteAddressService = async (id: number) => {
+export const deleteAddressService = async (id: number):Promise<string> => {
     await db.delete(addressTable).where(eq(addressTable.id, id));
     return "address deleted successfully";
 }

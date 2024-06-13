@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import {db} from "../drizzle/db";
+import { db } from "../drizzle/db";
 
 import { TIOrders, TSOrders, ordersTable } from "../drizzle/schema";
 
@@ -35,3 +35,32 @@ export const deleteOrderService = async (id: number) => {
     return "order deleted successfully";
 }
 
+// get order details
+export const getOrderDetailsService = async (id: number) => {
+    const order = await db.query.ordersTable.findFirst({
+        where: eq(ordersTable.id, id),
+        columns: {
+            price: true,
+            discount: true,
+            final_price: true,
+            comment: true,
+        },
+        with: {
+            user: {
+                columns: {
+                    name: true,
+                    email: true,
+                    contact_phone: true,
+                }
+            },
+
+
+
+
+
+        }
+
+    });
+    return order;
+
+}

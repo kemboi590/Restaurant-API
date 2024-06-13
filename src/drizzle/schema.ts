@@ -120,7 +120,7 @@ export const ordersTable = pgTable("orders", {
   restaurant_id: integer("restaurant_id").notNull().references(() => restaurantTable.id, { onDelete: "cascade" }),
   estimated_delivery_time: timestamp("estimated_delivery_time").notNull(),
   actual_delivery_time: timestamp("actual_delivery_time"),
-  delivery_address: varchar("delivery_address", { length: 255 }).notNull(),
+  delivery_address_id: integer("delivery_address_id").notNull().references(() => addressTable.id, { onDelete: "cascade" }),
   user_id: integer("user_id").notNull().references(() => usersTable.id, { onDelete: "cascade" }),
   driver_id: integer("driver_id").references(() => driverTable.id, { onDelete: "cascade", }),
   price: decimal("price").notNull(),
@@ -185,18 +185,16 @@ export const menuItemRelations = relations(menuItemTable, ({ one }) => ({  //den
   }),
 }));
 
-export const restaurantMenuItemsRelations = relations(
-  restaurantTable,
+export const restaurantMenuItemsRelations = relations(restaurantTable,
   ({ many }) => ({    //denotes the relationship between restaurant and menu item
     menuItems: many(menuItemTable), // one restaurant can have many menu items
   })
 );
 
 // 6. Menu Item and Category relationship
-export const categoryMenuItemsRelations = relations(
-  categoryTable, ({ many }) => ({    //denotes the relationship between category and menu item
-    menuItems: many(menuItemTable), // one category can have many menu items
-  })
+export const categoryMenuItemsRelations = relations(categoryTable, ({ many }) => ({    //denotes the relationship between category and menu item
+  menuItems: many(menuItemTable), // one category can have many menu items
+})
 );
 
 // 4. Address and User relationship
@@ -241,15 +239,14 @@ export const restaurantRelations = relations(restaurantTable, ({ one }) => ({  /
 }));
 
 // 7. Restaurant and Owner relationship
-export const restaurantOwnerRelations = relations(
-  restaurantOwnerTable, ({ one }) => ({    //denotes the relationship between restaurant and owner
-    restaurant: one(restaurantTable, {      // one owner belongs to one restaurant
-      fields: [restaurantOwnerTable.restaurant_id], references: [restaurantTable.id],
-    }),
-    owner: one(usersTable, {    // one owner belongs to one user
-      fields: [restaurantOwnerTable.owner_id], references: [usersTable.id],
-    }),
-  })
+export const restaurantOwnerRelations = relations(restaurantOwnerTable, ({ one }) => ({    //denotes the relationship between restaurant and owner
+  restaurant: one(restaurantTable, {      // one owner belongs to one restaurant
+    fields: [restaurantOwnerTable.restaurant_id], references: [restaurantTable.id],
+  }),
+  owner: one(usersTable, {    // one owner belongs to one user
+    fields: [restaurantOwnerTable.owner_id], references: [usersTable.id],
+  }),
+})
 );
 
 // 8. Order and User relationship
@@ -270,6 +267,7 @@ export const orderRestaurantRelations = relations(ordersTable, ({ one }) => ({  
   }),
 }));
 
+
 export const restaurantOrderRelations = relations(
   restaurantTable, ({ many }) => ({    // denotes the relationship between restaurant and order
     orders: many(ordersTable), // one restaurant can have many orders
@@ -288,15 +286,14 @@ export const orderDriverRelations = relations(ordersTable, ({ one }) => ({  //de
 }));
 
 // 11. Order and Menu Item relationship
-export const orderMenuItemRelations = relations(
-  orderMenuItemTable, ({ one }) => ({    //denotes the relationship between order and menu item
-    order: one(ordersTable, {      // one order belongs to one menu item
-      fields: [orderMenuItemTable.order_id], references: [ordersTable.id],
-    }),
-    menuItem: one(menuItemTable, {      // one order belongs to one menu item
-      fields: [orderMenuItemTable.menu_item_id], references: [menuItemTable.id],
-    }),
-  })
+export const orderMenuItemRelations = relations(orderMenuItemTable, ({ one }) => ({    //denotes the relationship between order and menu item
+  order: one(ordersTable, {      // one order belongs to one menu item
+    fields: [orderMenuItemTable.order_id], references: [ordersTable.id],
+  }),
+  menuItem: one(menuItemTable, {      // one order belongs to one menu item
+    fields: [orderMenuItemTable.menu_item_id], references: [menuItemTable.id],
+  }),
+})
 );
 
 // 12. Order and Status relationship
@@ -310,10 +307,9 @@ export const orderStatusRelations = relations(orderStatusTable, ({ one }) => ({ 
 }));
 
 // 13. Status and Catalog relationship
-export const statusCatalogRelations = relations(
-  statusCatalogTable, ({ many }) => ({    //denotes the relationship between status and catalog
-    statuses: many(orderStatusTable), // one status can have many orders
-  })
+export const statusCatalogRelations = relations(statusCatalogTable, ({ many }) => ({    //denotes the relationship between status and catalog
+  statuses: many(orderStatusTable), // one status can have many orders
+})
 );
 
 // 14. Order and Comments relationship
@@ -335,7 +331,36 @@ export const userCommentRelations = relations(usersTable, ({ many }) => ({  //de
   comments: many(commentsTable), // one user can have many comments
 }));
 
-// =================================================================================================//
+//===========================================// new relationships //===========================================//
+
+
+// orderRelationships
+export const orderRelationships = relations(ordersTable, ({ one, many }) => ({
+  user: one(usersTable, {
+    fields: [ordersTable.user_id],
+    references: [usersTable.id],
+  }),
+  driver: one(driverTable, {
+    fields: [ordersTable.driver_id],
+    references: [driverTable.id],
+  }),
+  restaurant: one(restaurantTable, {
+    fields: [ordersTable.restaurant_id],
+    references: [restaurantTable.id],
+  }),
+  delivery_address: one(addressTable, { 
+    fields: [ordersTable.delivery_address_id],
+    references: [addressTable.id],
+  }),
+  order_status: many(orderStatusTable),
+  order_menu_items: many(orderMenuItemTable),
+  menuItem: many(menuItemTable),
+
+})
+
+
+);
+
 
 // State table
 export type TIState = typeof stateTable.$inferInsert;
