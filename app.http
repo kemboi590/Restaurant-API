@@ -525,3 +525,6 @@ GET http://localhost:8000/drivers/2/orders
         
 ### get user address users/:id/address
 GET http://localhost:8000/users/1/address
+
+### get restaurant with orders -> restaurants/:id/orders
+GET http://localhost:8000/restaurants/1/orders

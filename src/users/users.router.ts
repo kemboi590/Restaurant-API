@@ -34,4 +34,4 @@ userRouter
 
 // get user address
 userRouter
-    .get("users/:id/address", getUserAddressController)
+    .get("users/:id/address", adminRoleAuth, getUserAddressController)
