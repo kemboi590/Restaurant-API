@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import {db} from "../drizzle/db";
+import { db } from "../drizzle/db";
 
 import { TIState, TSState, stateTable } from "../drizzle/schema";
 
@@ -39,8 +39,13 @@ export const deleteStateService = async (id: number) => {
 export const getStateWithCitiesService = async (id: number): Promise<TSState | undefined> => {
   const state = await db.query.stateTable.findFirst({
     where: eq(stateTable.id, id),
-    with:{
-      cities: true
+    with: {
+      city: {
+        columns: {
+          name: true,
+
+        }
+      }
     }
   });
   return state;

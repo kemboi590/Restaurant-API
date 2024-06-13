@@ -62,7 +62,6 @@ export const getUsersWithOrdersService = async (id: number) => {
                     id: true,
                     estimated_delivery_time: true,
                     actual_delivery_time: true,
-                    delivery_address: true,
                     price: true,
                     discount: true,
                     comment: true,
@@ -83,7 +82,7 @@ export const getUserAddressService = async (id: number) => {
             contact_phone: true,
         },
         with: {
-            addresses: {
+            address: {
                 columns: {
                     street_address_1: true,
                     zip_code: true,

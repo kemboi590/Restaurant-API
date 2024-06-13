@@ -51,7 +51,7 @@ export const getRestaurantWithOrdersService = async (id: number) => {
                 columns: {
                     user_id: true,
                     estimated_delivery_time: true,
-                    delivery_address: true,
+                    delivery_address_id: true,
                     price: true,
                     discount: true,
                     final_price: true,
