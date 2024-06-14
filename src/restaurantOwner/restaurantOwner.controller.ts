@@ -1,5 +1,6 @@
 import { Context } from "hono";
-import { getRestaurantOwnersService, getRestaurantOwnerByIdService, createRestaurantOwnerService, updateRestaurantOwnerService, deleteRestaurantOwnerService } from "./restaurantOwner.service";
+import { getRestaurantOwnersService, getRestaurantOwnerByIdService, createRestaurantOwnerService, updateRestaurantOwnerService, 
+    deleteRestaurantOwnerService, getRestaurantOwnerWithRestaurantsService } from "./restaurantOwner.service";
 
 // get all restaurantOwners
 export const getRestaurantOwnersController = async (c: Context) => {
@@ -77,6 +78,23 @@ export const deleteRestaurantOwnerController = async (c: Context) => {
         const res = await deleteRestaurantOwnerService(id);
         if (!res) return c.text("RestaurantOwner not deleted", 400);
         return c.json({ message: res }, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 500);
+    }
+};
+
+// restaurantOwner with restaurants
+export const getRestaurantOwnerWithRestaurantsController = async (c: Context) => {
+    try {
+        const id = parseInt(c.req.param("id"));
+        if (isNaN(id)) {
+            return c.text("Invalid id", 400);
+        }
+        const restaurantOwner = await getRestaurantOwnerWithRestaurantsService(id);
+        if (restaurantOwner == null) {
+            return c.text("RestaurantOwner not found", 404);
+        }
+        return c.json(restaurantOwner, 200);
     } catch (error: any) {
         return c.json({ error: error?.message }, 500);
     }

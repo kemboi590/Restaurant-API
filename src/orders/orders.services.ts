@@ -53,11 +53,20 @@ export const getOrderDetailsService = async (id: number) => {
                     contact_phone: true,
                 }
             },
-
-
-
-
-
+            restaurant: {
+                columns: {
+                    name: true,
+                    street_address: true,
+                    zip_code: true,
+                }
+            },
+            delivery_address: {
+                columns: {
+                    delivery_instructions: true,
+                    street_address_1: true,
+                    zip_code: true,
+                }
+            }
         }
 
     });

@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import {
     getUsersController, getUserByIdController, createUserController, updateUserController,
-    deleteUserController, getUserWithOrdersController, getUserAddressController
+    deleteUserController, getUserWithOrdersController, getUserAddressController, getUserCommentsController
 } from './users.controller'
 import { zValidator } from '@hono/zod-validator';
 import { userSchema } from '../validators';
@@ -35,3 +35,7 @@ userRouter
 // get user address
 userRouter
     .get("users/:id/address", adminRoleAuth, getUserAddressController)
+
+// get user comments
+userRouter
+    .get("users/:id/comments", bothRoleAuth, getUserCommentsController)

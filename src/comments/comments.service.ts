@@ -33,28 +33,13 @@ export const deleteCommentService = async (id: number) => {
     await db.delete(commentsTable).where(eq(commentsTable.id, id));
     return "comment deleted successfully";
 }
-
-// commentwithUser
-// only get user name and email
-// "user": {
-//     "id": 1,
-//     "name": "Brian Kemboi",
-//     "contact_phone": "0712345678",
-//     "phone_verified": true,
-//     "email": "kemboi@gmail.com",
-//     "email_verified": true,
-//     "confirmation_code": "1234",
-//     "created_at": "2024-06-09T11:00:53.294Z",
-//     "updated_at": "2024-06-09T11:00:53.294Z"
-//   }
 export const getCommentWithUserService = async (id: number) => {
     const comment = await db.query.commentsTable.findFirst({
         where: eq(commentsTable.id, id),
         columns: {
-            id: true,
             comment_text: true,
-            is_praise: true,
             is_complaint: true,
+            is_praise: true,
         },
         with: {
             user: {
@@ -62,6 +47,12 @@ export const getCommentWithUserService = async (id: number) => {
                     id: true,
                     name: true,
                     email: true
+                }
+            },
+            order: {
+                columns: {
+                    price: true,
+                    comment: true,
                 }
             }
         }

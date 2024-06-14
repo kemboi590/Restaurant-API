@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import {db} from "../drizzle/db";
+import { db } from "../drizzle/db";
 
 import { TIRestaurantOwner, TSRestaurantOwner, restaurantOwnerTable } from "../drizzle/schema";
 
@@ -33,4 +33,33 @@ export const updateRestaurantOwnerService = async (id: number, restaurantOwner: 
 export const deleteRestaurantOwnerService = async (id: number) => {
     await db.delete(restaurantOwnerTable).where(eq(restaurantOwnerTable.id, id));
     return "restaurantOwner deleted successfully";
+}
+
+// restaurantOwnerWithRestaurants
+export const getRestaurantOwnerWithRestaurantsService = async (id: number) => {
+    const restaurantOwner = await db.query.restaurantOwnerTable.findFirst({
+        where: eq(restaurantOwnerTable.id, id),
+        columns: {
+            id: false,
+            restaurant_id: false,
+            owner_id: false
+        },
+        with: {
+            owner: {
+                columns: {
+                    name: true,
+                    contact_phone: true,
+                    email: true
+                }
+            },
+            restaurant: {
+                columns: {
+                    name: true,
+                    street_address: true,
+                    zip_code: true
+                }
+            }
+        }
+    })
+    return restaurantOwner;
 }

@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
-import { getRestaurantOwnersController, getRestaurantOwnerByIdController, createRestaurantOwnerController, updateRestaurantOwnerController, deleteRestaurantOwnerController } from './restaurantOwner.controller';
+import { getRestaurantOwnersController, getRestaurantOwnerByIdController, createRestaurantOwnerController, 
+    updateRestaurantOwnerController, deleteRestaurantOwnerController, getRestaurantOwnerWithRestaurantsController } from './restaurantOwner.controller';
 import { zValidator } from '@hono/zod-validator';
 import { restaurantOwnerSchema } from "../validators";
 import { adminRoleAuth, userRoleAuth, bothRoleAuth } from './../middleware/baerAuth';
@@ -25,3 +26,8 @@ restaurantOwnerRouter
         }
     }), adminRoleAuth, updateRestaurantOwnerController)
     .delete("restaurantOwners/:id", adminRoleAuth, deleteRestaurantOwnerController)
+
+
+// get restaurantOwner with restaurants
+restaurantOwnerRouter
+    .get("restaurantOwners/:id/restaurants", bothRoleAuth, getRestaurantOwnerWithRestaurantsController)

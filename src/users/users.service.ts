@@ -51,7 +51,6 @@ export const getUsersWithOrdersService = async (id: number) => {
     const user = await db.query.usersTable.findFirst({
         where: eq(usersTable.id, id),
         columns: {
-            id: true,
             name: true,
             email: true,
             contact_phone: true,
@@ -59,14 +58,12 @@ export const getUsersWithOrdersService = async (id: number) => {
         with: {
             orders: {
                 columns: {
-                    id: true,
-                    estimated_delivery_time: true,
-                    actual_delivery_time: true,
                     price: true,
                     discount: true,
-                    comment: true,
+                    final_price: true,
+                    comment: true
                 }
-            }
+            },
         }
     });
     return user;
@@ -79,6 +76,7 @@ export const getUserAddressService = async (id: number) => {
         where: eq(usersTable.id, id),
         columns: {
             name: true,
+            email: true,
             contact_phone: true,
         },
         with: {
@@ -90,6 +88,27 @@ export const getUserAddressService = async (id: number) => {
                 }
             }
 
+        }
+    });
+    return user;
+}
+
+// getuserComments
+export const getUserCommentsService = async (id: number) => {
+    const user = await db.query.usersTable.findFirst({
+        where: eq(usersTable.id, id),
+        columns: {
+            name: true,
+            email: true
+        },
+        with: {
+            comments: {
+                columns: {
+                    comment_text: true,
+                    is_complaint: true,
+                    is_praise: true
+                }
+            }
         }
     });
     return user;

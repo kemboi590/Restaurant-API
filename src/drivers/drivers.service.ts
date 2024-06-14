@@ -38,17 +38,22 @@ export const deleteDriverService = async (id: number) => {
 // driverWithOrders
 export const getDriverWithOrdersService = async (id: number) => {
     const driver = await db.query.driverTable.findFirst({
-        where: eq(driverTable.id, id), // instead of ||, to join the table, you can use the join method
+        where: eq(driverTable.id, id),
         columns: {
-            id: true,
             car_model: true,
             car_make: true,
             online: true,
         },
         with: {
+            user:{
+                columns:{
+                    name:true, 
+                    email:true,
+                    contact_phone:true,
+                }
+            },
             orders: {
                 columns: {
-                    restaurant_id: true,
                     delivery_address_id: true,
                     estimated_delivery_time: true,
                 }

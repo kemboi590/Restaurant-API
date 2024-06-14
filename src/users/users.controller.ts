@@ -1,6 +1,6 @@
 import { Context } from "hono";
 import { getUsersService, getUserByIdService, createUserService, updateUserService, 
-    deleteUserService, getUsersWithOrdersService, getUserAddressService } from "./users.service";
+    deleteUserService, getUsersWithOrdersService, getUserAddressService, getUserCommentsService } from "./users.service";
 
 // get all users
 export const getUsersController = async (c: Context) => {
@@ -106,6 +106,22 @@ export const getUserAddressController = async (c: Context) => {
         const id = parseInt(c.req.param("id"));
         if (isNaN(id)) return c.text("Invalid id", 400);
         const user = await getUserAddressService(id);
+        if (user == null) {
+            return c.text("User not found", 404);
+        }
+        return c.json(user, 200);
+    } catch (error: any) {
+        return c.json({ error: error?.message }, 500);
+    }
+};
+
+// get user comments
+export const getUserCommentsController = async (c: Context) => {
+    try {
+        // get id from url
+        const id = parseInt(c.req.param("id"));
+        if (isNaN(id)) return c.text("Invalid id", 400);
+        const user = await getUserCommentsService(id);
         if (user == null) {
             return c.text("User not found", 404);
         }
