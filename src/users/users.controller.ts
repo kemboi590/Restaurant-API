@@ -42,18 +42,17 @@ export const createUserController = async (c: Context) => {
         const newUser = await createUserService(user);
 
         if (!newUser) {
-            return c.text("User not created", 400)
+            return c.text('User not created', 400);
         } else {
-            const userEmail: string = user.email
-            const eventName: string = 'created an account in our Restaurant website'
-            const userName: string = user.name
-            // send email to the user
-            const emailRes = await sendRegistrationEmailTemplate(userEmail, eventName, userName);
+            const userEmail: string = user.email;
+            const eventName: string = 'created an account on our Restaurant website';
+            const userName: string = user.name;
+            const imageUrl: string = './deliciusfood.png';
+
+            const emailRes = await sendRegistrationEmailTemplate(userEmail, eventName, userName, imageUrl);
             console.log('emailRes', emailRes);
             return c.json({ message: newUser, emailRes }, 201);
-
         }
-        // return c.json({ message: newUser }, 201);
     } catch (error: any) {
         return c.json({ error: error?.message }, 500);
     }
